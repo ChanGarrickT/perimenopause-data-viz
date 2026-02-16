@@ -1,7 +1,62 @@
+.colony-main {
+    font-family: 'Inter', 'Courier';
+    font-weight: 400;
+    line-height: 1.2;
+}
+
+.colony-title {
+    color: white;
+    font-family: 'Fragment Mono', Courier, monospace;
+    font-size: 18pt;
+}
+
 .gray-panel {
     background-color: #C2C5D0;
     mix-blend-mode: multiply;
     border: 2px solid #45144B;
-    border-radius: 48px;
+    border-radius: 60px;
+    padding: 36px;
     box-sizing: border-box;
+    filter: drop-shadow(0px 2px 2px dimgray)
+}
+
+.filter-header {
+    font-size: 18pt;
+    font-weight: 5400;
+}
+
+.divided-option {
+    border-bottom: 2px solid #E9ADDF00;
+    cursor: pointer;
+    transition: border-bottom-color 200ms;
+}
+
+.divided-option:hover {
+    border-bottom: 2px solid hsl(310, 30%, 90%, 50%); 
+}
+
+.divided-option-selected {
+    border-bottom: 2px solid #E9ADDF; 
+}
+
+.divided-option-selected:hover {
+    border-bottom: 2px solid #E9ADDF; 
+}
+
+.pill-option {
+    cursor: pointer;
+    transition: background-color 200ms, color 200ms;
+}
+
+.pill-option:hover {
+    background-color: #A4C4CC88;
+}
+
+.pill-option-selected {
+    background-color: #A4C4CC;
+    color: #2F3F4F;
+}
+
+.pill-option-selected:hover {
+    background-color: #A4C4CC;
 }
