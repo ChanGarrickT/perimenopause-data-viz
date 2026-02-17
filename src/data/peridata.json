@@ -10,22 +10,22 @@
                     {
                         "name": "Fluctuation in Cycles",
                         "value": 11508,
-                        "x": 0,
-                        "y": 0,
+                        "x": 0.439,
+                        "y": 0.411,
                         "hovertext": "Menstrual cycles become irregular-shorter, longer, or skipped, as hormone levels fluctuate during this phase."
                     },
                     {
                         "name": "PMS Worsening",
                         "value": 288,
-                        "x": 0,
-                        "y": 0,
+                        "x": 0.416,
+                        "y": 0.396,
                         "hovertext": "PMS Worsening during Menstrual Cycle"
                     },
                     {
                         "name": "Cramps",
                         "value": 200,
-                        "x": 0,
-                        "y": 0,
+                        "x": 0.445,
+                        "y": 0.385,
                         "hovertext": "Cramps during Menstrual Cycle"
                     }
                 ]
@@ -45,8 +45,8 @@
                     {
                         "name": "Anxiety",
                         "value": 3206,
-                        "x": 0,
-                        "y": 0,
+                        "x": 0.474,
+                        "y": 0.208,
                         "hovertext": "Fluctuation in estrogen levels can lead to Anxiety"
                     },
                     {
@@ -150,15 +150,15 @@
                     {
                         "name": "Weight Gain",
                         "value": 1748,
-                        "x": 0,
-                        "y": 0,
+                        "x": 0.464,
+                        "y": 0.353,
                         "hovertext": "Unexplained weight gain is one of the early indicators of Perimenopause."
                     },
                     {
                         "name": "Vision Changes",
                         "value": 801,
-                        "x": 0,
-                        "y": 0,
+                        "x": 0.481,
+                        "y": 0.076,
                         "hovertext": ""
                     },
                     {
@@ -178,8 +178,8 @@
                     {
                         "name": "Breast Tenderness / Pain",
                         "value": 591,
-                        "x": 0,
-                        "y": 0,
+                        "x": 0.542,
+                        "y": 0.241,
                         "hovertext": "Breast Tenderness are often caused by fluctuations in Progesterone levels. It is one of the early indicators of this stage."
                     },
                     {
@@ -206,15 +206,15 @@
                     {
                         "name": "Blood Pressure Fluctuation",
                         "value": 263,
-                        "x": 0,
-                        "y": 0,
+                        "x": 0.496,
+                        "y": 0.225,
                         "hovertext": ""
                     },
                     {
                         "name": "Balancing Issues",
                         "value": 223,
-                        "x": 0,
-                        "y": 0,
+                        "x": 0.488,
+                        "y": 0.06,
                         "hovertext": ""
                     },
                     {
@@ -227,8 +227,8 @@
                     {
                         "name": "Pelvic Discomfort",
                         "value": 138,
-                        "x": 0,
-                        "y": 0,
+                        "x": 0.535,
+                        "y": 0.394,
                         "hovertext": ""
                     },
                     {
@@ -241,8 +241,8 @@
                     {
                         "name": "Tinnitus",
                         "value": 124,
-                        "x": 0,
-                        "y": 0,
+                        "x": 0.574,
+                        "y": 0.087,
                         "hovertext": "Tinnitus or Ringing Ear are one of the least discussed symptoms"
                     },
                     {
@@ -283,22 +283,22 @@
                     {
                         "name": "Tingling",
                         "value": 75,
-                        "x": 0,
-                        "y": 0,
+                        "x": 0.569,
+                        "y": 0.505,
                         "hovertext": ""
                     },
                     {
                         "name": "Irritable Bowel Syndrome (IBS)",
                         "value": 65,
-                        "x": 0,
-                        "y": 0,
+                        "x": 0.525,
+                        "y": 0.357,
                         "hovertext": ""
                     },
                     {
                         "name": "Diabetes",
                         "value": 63,
-                        "x": 0,
-                        "y": 0,
+                        "x": 0.43,
+                        "y": 0.269,
                         "hovertext": ""
                     },
                     {
@@ -325,8 +325,8 @@
                     {
                         "name": "Dry Mouth",
                         "value": 25,
-                        "x": 0,
-                        "y": 0,
+                        "x": 0.508,
+                        "y": 0.125,
                         "hovertext": ""
                     },
                     {
@@ -353,22 +353,22 @@
                     {
                         "name": "Insomnia",
                         "value": 4083,
-                        "x": 0,
-                        "y": 0,
+                        "x": 0.509,
+                        "y": 0.061,
                         "hovertext": "Sleep disruption affects ~38% of women and often co-occurs with hot flashes. Rates vary by race/ethnicity ~ lowest (28%) observed in Japanese and highest (40%) in Caucasian women. Symptoms are also associated with estrogen volatility and low progesterone."
                     },
                     {
                         "name": "Fatigue",
                         "value": 1230,
-                        "x": 0,
-                        "y": 0,
+                        "x": 0.5,
+                        "y": 0.034,
                         "hovertext": ""
                     },
                     {
                         "name": "Vivid Dreams",
                         "value": 42,
-                        "x": 0,
-                        "y": 0,
+                        "x": 0.532,
+                        "y": 0.025,
                         "hovertext": ""
                     }
                 ]
@@ -388,8 +388,8 @@
                     {
                         "name": "Migraine",
                         "value": 1812,
-                        "x": 0,
-                        "y": 0,
+                        "x": 0.479,
+                        "y": 0.041,
                         "hovertext": ""
                     },
                     {
@@ -397,7 +397,7 @@
                         "value": 1024,
                         "x": 0,
                         "y": 0,
-                        "hovertext": ""
+                        "hovertext": "Decline in Progesterone could lead to Memory Lapse."
                     },
                     {
                         "name": "Dizzy / Vertigo",
@@ -411,7 +411,7 @@
                         "value": 12,
                         "x": 0,
                         "y": 0,
-                        "hovertext": ""
+                        "hovertext": "Decreased attention often due to fluctuating testosterone & estrogen"
                     }
                 ]
             },
@@ -430,8 +430,8 @@
                     {
                         "name": "Heart Palpitations",
                         "value": 931,
-                        "x": 0,
-                        "y": 0,
+                        "x": 0.498,
+                        "y": 0.208,
                         "hovertext": "Fluctuation in Estrogen levels could lead to heart palpitations or irregular heart beat."
                     },
                     {
@@ -465,15 +465,15 @@
                     {
                         "name": "Frequent Urination",
                         "value": 414,
-                        "x": 0,
-                        "y": 0,
+                        "x": 0.419,
+                        "y": 0.419,
                         "hovertext": ""
                     },
                     {
                         "name": "Urinary Tract Infection",
                         "value": 198,
-                        "x": 0,
-                        "y": 0,
+                        "x": 0.405,
+                        "y": 0.409,
                         "hovertext": ""
                     },
                     {
@@ -486,8 +486,8 @@
                     {
                         "name": "Painful Intercourse",
                         "value": 80,
-                        "x": 0,
-                        "y": 0,
+                        "x": 0.435,
+                        "y": 0.43,
                         "hovertext": "Decreased Estrogen levels often lead to pain or discomfort during intercourse"
                     }
                 ]
@@ -521,8 +521,8 @@
                     {
                         "name": "Dry & Itchy Ear",
                         "value": 157,
-                        "x": 0,
-                        "y": 0,
+                        "x": 0.576,
+                        "y": 0.075,
                         "hovertext": ""
                     },
                     {
