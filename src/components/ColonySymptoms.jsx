@@ -4,19 +4,20 @@ import * as d3 from "d3";
 export default function ColonySymptoms(props){
     // Used to calculate bar width
     let maxCount = 0;
-    for(const entry of props.symptoms.children){
+    for(const entry of props.peridata){
         maxCount = Math.max(maxCount, entry.value);
     }
 
     return (
         <div className='flex flex-col h-7/12 px-4'>
             {
-                props.symptoms.children.map((category, index) => {
+                props.peridata.map((category, index) => {
                     const chartRowsProps = {
                         index: index,
                         text: category.name,
                         width: category.value / maxCount,
-                        color: category.color};
+                        color: category.color,
+                        setSelectedCategory: props.setSelectedCategory};
                     return <ChartRows key={index} {...chartRowsProps} />
                 })
             }
@@ -53,6 +54,8 @@ function ChartRows(props){
                     .transition()
                     .duration(150)
                     .style('background-color', props.color)
+                console.log(props.text)
+                props.setSelectedCategory(props.text)
             }
         )
     }, []);

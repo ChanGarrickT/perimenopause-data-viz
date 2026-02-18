@@ -1,7 +1,10 @@
 .colony-main {
+    color: white;
     font-family: 'Inter', 'Courier';
     font-weight: 400;
     line-height: 1.2;
+    background-image: url("image 131.png");
+    background-size:cover;
 }
 
 .colony-title {
@@ -15,8 +18,11 @@
     mix-blend-mode: multiply;
     border: 2px solid #45144B;
     border-radius: 60px;
+    filter: drop-shadow(0px 2px 2px dimgray);
+}
+
+.gray-panel-content { 
     padding: 36px;
-    filter: drop-shadow(0px 2px 2px dimgray)
 }
 
 .filter-header {

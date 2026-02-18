@@ -16,17 +16,17 @@ export default function ColonySelectorDivided(props){
     }, []);
 
     return (
-        <div ref={containerRef} className='flex flex-row h-8 items-center justify-center text-center'>
+        <div ref={containerRef} className='inline h-8 text-center'>
             {props.options.map((option, index) => {
                 if(index === props.options.length - 1){
                     return (
-                        <div key={index} className='divided-option mx-1 px-2 py-1'>{option}</div>
+                        <div key={index} className='inline-block divided-option mx-1 px-2 py-1'>{option}</div>
                     )
                 } else {
                     return (
                         <Fragment key={index}>
-                            <div className='divided-option mx-1 px-2 py-1'>{option}</div>
-                            <span className='border-gray-400 border-1 h-8'></span>
+                            <div className='inline-block divided-option mx-1 px-2 py-1'>{option}</div>
+                            <span className='inline border-gray-400 border-1 h-8'></span>
                         </Fragment>
                     )
                 }               

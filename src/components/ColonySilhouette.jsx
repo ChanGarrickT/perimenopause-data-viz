@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, Fragment } from 'react';
 import * as d3 from "d3";
 import { useResizeObserver, useDebounceCallback } from 'usehooks-ts';
 
@@ -13,28 +13,28 @@ export default function ColonySilhouette(props){
     let data = [];
     for (const category of props.peridata){
         for (const symptom of category.children){
-            data.push({...symptom, category: category, color: category.color});
+            data.push({...symptom, category: category.name, color: category.color});
         }
     }
 
     useEffect(() => {
         if(data.length === 0) return;
         if(size.width === 0 || size.height === 0) return;
-        plotPoints(svgRef.current, tooltipRef.current, data, size);
-    }, [size]);
+        plotPoints(svgRef.current, tooltipRef.current, data, props.selectedCategory, size);
+    }, [size, props.selectedCategory]);
 
     return (
         <div className='silhouette relative h-full aspect-[1241/1754] mx-auto'>
-            <div ref={tooltipRef} className='absolute -left-20 w-1/3'>hi</div>
+            <div ref={tooltipRef} className='absolute -left-20 w-5/12 text-sm'></div>
             <svg ref={svgRef} width='100%' height='100%'></svg>
         </div>
     )
 }
 
-function plotPoints(svgElement, tooltipElement, data, size){
+function plotPoints(svgElement, tooltipElement, data, selectedCategory, size){
     const svg = d3.select(svgElement)
     svg.selectAll('circle')
-        .data(data.filter(d => filterSymptoms(d, null)), d => d.name)
+        .data(data.filter(d => filterSymptoms(d, selectedCategory)), d => d.name)
         .join(
             function(enter){
                 const circles = enter.append('circle')
@@ -45,7 +45,7 @@ function plotPoints(svgElement, tooltipElement, data, size){
                     .style('cursor', 'pointer')
                     .on('mouseover', function(e, d) {
                         d3.select(tooltipElement)
-                            .text(d.hovertext !== "" ? d.hovertext : d.name)
+                            .html(getTooltipHtml(d))
                     })
                 
                 circles.transition()
@@ -64,10 +64,24 @@ function plotPoints(svgElement, tooltipElement, data, size){
                     .transition()
                     .duration(200)
                     .attr('r', 0)
+                    .remove()
             }
         );
 }
 
 function filterSymptoms(d, filters){
-    return true;
+    if(filters === '') return true;
+    return d.category === filters;
+}
+
+function getTooltipHtml(d){
+    if(d.hovertext !== ""){
+        return (
+                `<h5 class='text-lg font-semibold'>${d.name}</h5>
+                <br />
+                <p>${d.hovertext}</p>`
+        )
+    } else {
+        return `<h5 class='text-lg font-semibold'>${d.name}</h5>`
+    }
 }

@@ -38,8 +38,8 @@
                     {
                         "name": "Stress",
                         "value": 5000,
-                        "x": 0,
-                        "y": 0,
+                        "x": 0.521,
+                        "y": 0.042,
                         "hovertext": ""
                     },
                     {
@@ -52,92 +52,92 @@
                     {
                         "name": "Mood Swing",
                         "value": 1425,
-                        "x": 0,
-                        "y": 0,
+                        "x": 0.521,
+                        "y": 0.218,
                         "hovertext": "Fluctuation in testosterone and estrogen can lead to Mood Swings"
                     },
                     {
                         "name": "ADHD",
                         "value": 1170,
-                        "x": 0,
-                        "y": 0,
+                        "x": 0.461,
+                        "y": 0.048,
                         "hovertext": ""
                     },
                     {
                         "name": "Panic",
                         "value": 993,
-                        "x": 0,
-                        "y": 0,
+                        "x": 0.468,
+                        "y": 0.062,
                         "hovertext": ""
                     },
                     {
                         "name": "Anger",
                         "value": 987,
-                        "x": 0,
-                        "y": 0,
+                        "x": 0.533,
+                        "y": 0.056,
                         "hovertext": ""
                     },
                     {
                         "name": "Depression",
                         "value": 832,
-                        "x": 0,
-                        "y": 0,
+                        "x": 0.526,
+                        "y": 0.07,
                         "hovertext": "Depressive symptoms varied by ethnicity in SWAN study, with sharp increases over time among Japanese and Hispanic women, and associations with higher testosterone levels"
                     },
                     {
                         "name": "Tearfulness",
                         "value": 340,
-                        "x": 0,
-                        "y": 0,
+                        "x": 0.463,
+                        "y": 0.088,
                         "hovertext": ""
                     },
                     {
                         "name": "Irritability",
                         "value": 229,
-                        "x": 0,
-                        "y": 0,
+                        "x": 0.468,
+                        "y": 0.185,
                         "hovertext": ""
                     },
                     {
                         "name": "Emotional Instability",
                         "value": 213,
-                        "x": 0,
-                        "y": 0,
+                        "x": 0.529,
+                        "y": 0.194,
                         "hovertext": ""
                     },
                     {
                         "name": "Sudden Sadness",
                         "value": 48,
-                        "x": 0,
-                        "y": 0,
+                        "x": 0.542,
+                        "y": 0.212,
                         "hovertext": ""
                     },
                     {
                         "name": "Social Withdrawal",
                         "value": 27,
-                        "x": 0,
-                        "y": 0,
+                        "x": 0.441,
+                        "y": 0.197,
                         "hovertext": ""
                     },
                     {
                         "name": "Loss of Motivation",
                         "value": 18,
-                        "x": 0,
-                        "y": 0,
+                        "x": 0.454,
+                        "y": 0.072,
                         "hovertext": ""
                     },
                     {
                         "name": "Low Self Esteem",
                         "value": 3,
-                        "x": 0,
-                        "y": 0,
+                        "x": 0.445,
+                        "y": 0.217,
                         "hovertext": ""
                     },
                     {
                         "name": "Mental Fatigue",
                         "value": 3,
-                        "x": 0,
-                        "y": 0,
+                        "x": 0.554,
+                        "y": 0.05,
                         "hovertext": ""
                     }
                 ]
@@ -164,15 +164,15 @@
                     {
                         "name": "Body Odour",
                         "value": 779,
-                        "x": 0,
-                        "y": 0,
+                        "x": 0.58,
+                        "y": 0.209,
                         "hovertext": ""
                     },
                     {
                         "name": "Bone Health",
                         "value": 741,
-                        "x": 0,
-                        "y": 0,
+                        "x": 0.416,
+                        "y": 0.66,
                         "hovertext": ""
                     },
                     {
@@ -185,22 +185,22 @@
                     {
                         "name": "Body Aches",
                         "value": 477,
-                        "x": 0,
-                        "y": 0,
+                        "x": 0.635,
+                        "y": 0.282,
                         "hovertext": "Body aches like Muscle & joint pain"
                     },
                     {
                         "name": "Digestive Problems",
                         "value": 454,
-                        "x": 0,
-                        "y": 0,
+                        "x": 0.491,
+                        "y": 0.277,
                         "hovertext": ""
                     },
                     {
                         "name": "Bloating",
                         "value": 290,
-                        "x": 0,
-                        "y": 0,
+                        "x": 0.467,
+                        "y": 0.288,
                         "hovertext": ""
                     },
                     {
@@ -220,8 +220,8 @@
                     {
                         "name": "Frozen Shoulder",
                         "value": 199,
-                        "x": 0,
-                        "y": 0,
+                        "x": 0.617,
+                        "y": 0.172,
                         "hovertext": ""
                     },
                     {
@@ -234,8 +234,8 @@
                     {
                         "name": "Obsessive Compulsive Disorder (OCD)",
                         "value": 136,
-                        "x": 0,
-                        "y": 0,
+                        "x": 0.504,
+                        "y": 0.078,
                         "hovertext": ""
                     },
                     {
@@ -248,36 +248,36 @@
                     {
                         "name": "Back Pain",
                         "value": 188,
-                        "x": 0,
-                        "y": 0,
+                        "x": 0.575,
+                        "y": 0.284,
                         "hovertext": ""
                     },
                     {
                         "name": "Dental Problems",
                         "value": 121,
-                        "x": 0,
-                        "y": 0,
+                        "x": 0.527,
+                        "y": 0.121,
                         "hovertext": ""
                     },
                     {
                         "name": "Heat Burn / Acid Reflux",
                         "value": 91,
-                        "x": 0,
-                        "y": 0,
+                        "x": 0.467,
+                        "y": 0.226,
                         "hovertext": ""
                     },
                     {
                         "name": "Itchy Skin/Scalp",
                         "value": 84,
-                        "x": 0,
-                        "y": 0,
+                        "x": 0.449,
+                        "y": 0.035,
                         "hovertext": ""
                     },
                     {
                         "name": "Electric Shock Experience / Tremors",
                         "value": 76,
-                        "x": 0,
-                        "y": 0,
+                        "x": 0.548,
+                        "y": 0.194,
                         "hovertext": ""
                     },
                     {
@@ -304,22 +304,22 @@
                     {
                         "name": "Insulin Resistance",
                         "value": 52,
-                        "x": 0,
-                        "y": 0,
+                        "x": 0.486,
+                        "y": 0.299,
                         "hovertext": ""
                     },
                     {
                         "name": "Crawling on Skin",
                         "value": 49,
-                        "x": 0,
-                        "y": 0,
+                        "x": 0.612,
+                        "y": 0.451,
                         "hovertext": ""
                     },
                     {
                         "name": "Swelling",
                         "value": 44,
-                        "x": 0,
-                        "y": 0,
+                        "x": 0.526,
+                        "y": 0.762,
                         "hovertext": ""
                     },
                     {
@@ -332,15 +332,15 @@
                     {
                         "name": "Food Intolerance",
                         "value": 20,
-                        "x": 0,
-                        "y": 0,
+                        "x": 0.452,
+                        "y": 0.278,
                         "hovertext": ""
                     },
                     {
                         "name": "Disorientation",
                         "value": 8,
-                        "x": 0,
-                        "y": 0,
+                        "x": 0.462,
+                        "y": 0.462,
                         "hovertext": ""
                     }
                 ]
@@ -381,8 +381,8 @@
                     {
                         "name": "Brain Fog",
                         "value": 3862,
-                        "x": 0,
-                        "y": 0,
+                        "x": 0.512,
+                        "y": 0.023,
                         "hovertext": ""
                     },
                     {
@@ -395,22 +395,22 @@
                     {
                         "name": "Memory Lapse",
                         "value": 1024,
-                        "x": 0,
-                        "y": 0,
+                        "x": 0.540,
+                        "y": 0.04,
                         "hovertext": "Decline in Progesterone could lead to Memory Lapse."
                     },
                     {
                         "name": "Dizzy / Vertigo",
                         "value": 568,
-                        "x": 0,
-                        "y": 0,
+                        "x": 0.486,
+                        "y": 0.021,
                         "hovertext": ""
                     },
                     {
                         "name": "Decreased Attention",
                         "value": 12,
-                        "x": 0,
-                        "y": 0,
+                        "x": 0.442,
+                        "y": 0.058,
                         "hovertext": "Decreased attention often due to fluctuating testosterone & estrogen"
                     }
                 ]
@@ -423,8 +423,8 @@
                     {
                         "name": "Hot Flashes & Night Sweat",
                         "value": 6812,
-                        "x": 0,
-                        "y": 0,
+                        "x": 0.591,
+                        "y": 0.247,
                         "hovertext": "Hot flashes affect up to 70% of women, vary by race/ethnicity ~ Rates are high among African-American & Native American women ; Chinese & Japanese women have lower rates & a shorter overall duratiion of hot flashes. Elevated FSH and fluctuating estrogen are predictive of hot flashes."
                     },
                     {
@@ -437,15 +437,15 @@
                     {
                         "name": "Chills",
                         "value": 400,
-                        "x": 0,
-                        "y": 0,
+                        "x": 0.478,
+                        "y": 0.238,
                         "hovertext": ""
                     },
                     {
                         "name": "Temperature Sensitivity",
                         "value": 118,
-                        "x": 0,
-                        "y": 0,
+                        "x": 0.488,
+                        "y": 0.184,
                         "hovertext": ""
                     }
                 ]
@@ -458,8 +458,8 @@
                     {
                         "name": "Low/High Libido",
                         "value": 1762,
-                        "x": 0,
-                        "y": 0,
+                        "x": 0.496,
+                        "y": 0.047,
                         "hovertext": "Fluctuations in testosterone can lead to Low/High Libido"
                     },
                     {
@@ -479,8 +479,8 @@
                     {
                         "name": "Vaginal Dryness & Irritation",
                         "value": 92,
-                        "x": 0,
-                        "y": 0,
+                        "x": 0.434,
+                        "y": 0.397,
                         "hovertext": "Vaginal symptoms are common during perimenopause and are associated with declining estrogen levels. 60% of Central American women reported vaginal dryness compared with 21% of non-Hispanic Caucasian women"
                     },
                     {
@@ -500,22 +500,22 @@
                     {
                         "name": "Hair Thinning or Loss",
                         "value": 1163,
-                        "x": 0,
-                        "y": 0,
+                        "x": 0.464,
+                        "y": 0.027,
                         "hovertext": ""
                     },
                     {
                         "name": "Skin Issues",
                         "value": 880,
-                        "x": 0,
-                        "y": 0,
+                        "x": 0.454,
+                        "y": 0.112,
                         "hovertext": ""
                     },
                     {
                         "name": "Allergy",
                         "value": 260,
-                        "x": 0,
-                        "y": 0,
+                        "x": 0.502,
+                        "y": 0.113,
                         "hovertext": ""
                     },
                     {
@@ -528,15 +528,15 @@
                     {
                         "name": "Dry Skin",
                         "value": 73,
-                        "x": 0,
-                        "y": 0,
+                        "x": 0.61,
+                        "y": 0.466,
                         "hovertext": ""
                     },
                     {
                         "name": "Brittle Nail",
                         "value": 71,
-                        "x": 0,
-                        "y": 0,
+                        "x": 0.573,
+                        "y": 0.521,
                         "hovertext": ""
                     }
                 ]
