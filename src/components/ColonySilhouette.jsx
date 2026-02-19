@@ -25,7 +25,7 @@ export default function ColonySilhouette(props){
 
     return (
         <div className='silhouette relative h-full aspect-[1241/1754] mx-auto'>
-            <div ref={tooltipRef} className='absolute -left-20 w-5/12 text-sm'></div>
+            <div ref={tooltipRef} id='colony-tooltip' className='fixed w-100 text-sm p-2 rounded-md'></div>
             <svg ref={svgRef} width='100%' height='100%'></svg>
         </div>
     )
@@ -46,11 +46,36 @@ function plotPoints(svgElement, tooltipElement, data, selectedCategory, size){
                     .on('mouseover', function(e, d) {
                         d3.select(tooltipElement)
                             .html(getTooltipHtml(d))
+                            .style('left', `${e.clientX - 200}px`)
+                            .style('top', `${e.clientY + 20}px`)
+                            .transition()
+                            .duration(150)
+                            .style('opacity', 1)
+                        d3.select(this)
+                            .transition()
+                            .duration(150)
+                            .attr('stroke', 'black')
+                            .attr('stroke-width', 2)
+                    })
+                    .on('mousemove', function(e) {
+                        d3.select(tooltipElement)
+                            .style('left', `${e.clientX - 200}px`)
+                            .style('top', `${e.clientY + 20}px`)
+                    })
+                    .on('mouseout', function(e) {
+                        d3.select(tooltipElement)
+                            .transition()
+                            .duration(150)
+                            .style('opacity', 0)
+                        d3.select(this)
+                            .transition()
+                            .duration(150)
+                            .attr('stroke-width', 0)
                     })
                 
                 circles.transition()
                     .duration(200)
-                    .attr('r', 5)
+                    .attr('r', 6)
             },
             function(update){
                 update

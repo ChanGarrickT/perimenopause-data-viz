@@ -5,7 +5,7 @@
             {
                 "name": "Menstrual",
                 "value": 12000,
-                "color": "#960F7E",
+                "color": "#A87C9F",
                 "children": [
                     {
                         "name": "Fluctuation in Cycles",
@@ -33,7 +33,7 @@
             {
                 "name": "Psychological & Emotional",
                 "value": 10500,
-                "color": "#7C7C7C",
+                "color": "#B8B0AC",
                 "children": [
                     {
                         "name": "Stress",
@@ -145,7 +145,7 @@
             {
                 "name": "Physical",
                 "value": 7297,
-                "color": "#334CC9",
+                "color": "#5778A4",
                 "children": [
                     {
                         "name": "Weight Gain",
@@ -348,7 +348,7 @@
             {
                 "name": "Sleep / Fatigue",
                 "value": 5358,
-                "color": "#1A7C6E",
+                "color": "#6A9F58",
                 "children": [
                     {
                         "name": "Insomnia",
@@ -376,7 +376,7 @@
             {
                 "name": "Cognitive",
                 "value": 4262,
-                "color": "#C57970",
+                "color": "#E49444",
                 "children": [
                     {
                         "name": "Brain Fog",
@@ -418,7 +418,7 @@
             {
                 "name": "Vasomotor",
                 "value": 4212,
-                "color": "#D41F28",
+                "color": "#D1615D",
                 "children": [
                     {
                         "name": "Hot Flashes & Night Sweat",
@@ -453,7 +453,7 @@
             {
                 "name": "Urological & Sexual",
                 "value": 4103,
-                "color": "#A765A8",
+                "color": "#F1A2A9",
                 "children": [
                     {
                         "name": "Low/High Libido",
@@ -495,7 +495,7 @@
             {
                 "name": "Dermatological & Sensory",
                 "value": 2863,
-                "color": "#1EA2C1",
+                "color": "#85B6B2",
                 "children": [
                     {
                         "name": "Hair Thinning or Loss",

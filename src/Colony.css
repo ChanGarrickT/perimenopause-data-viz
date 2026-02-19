@@ -13,6 +13,13 @@
     font-size: 18pt;
 }
 
+#colony-tooltip {
+    background-color: #0008;
+    pointer-events: none;
+    opacity: 0;
+    z-index: 20;
+}
+
 .gray-panel {
     background-color: #C2C5D0;
     mix-blend-mode: multiply;

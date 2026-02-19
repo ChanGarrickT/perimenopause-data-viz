@@ -54,7 +54,6 @@ function ChartRows(props){
                     .transition()
                     .duration(150)
                     .style('background-color', props.color)
-                console.log(props.text)
                 props.setSelectedCategory(props.text)
             }
         )
