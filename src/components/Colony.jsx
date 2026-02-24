@@ -9,32 +9,48 @@ import ColonySelectorPill from './ColonySelectorPill';
 import ColonySilhouette from './ColonySilhouette';
 import { NavLink } from 'react-router-dom';
 
-const viewOptions = ['Intensity', 'Less Frequent', 'High Frequency'];
+const viewOptions = ['Intense', 'Less Frequent', 'High Frequency'];
 const hormoneOptions = ['Estrogen', 'Progesterone', 'FSH', 'Testosterone'];
 
 export default function Colony(props){
-    const [selectedCategory, setSelectedCategory] = useState('');
+    const [currentCategory, setCurrentCategory] = useState('');
+    const [currentView, setCurrentView] = useState('');
+    const [currentStage, setCurrentStage] = useState('');
+    const [currentHormone, setCurrentHormone] = useState('');
 
     const symptomsProps = {
         peridata: peridata.symptoms.children,
-        setSelectedCategory: setSelectedCategory
+        currentCategory: currentCategory,
+        setCurrentCategory: setCurrentCategory
     }
 
     const viewProps = {
-        options: viewOptions
+        options: viewOptions,
+        currentOption: currentView,
+        setCurrentOption: setCurrentView     
     };
 
+    const stageProps = {
+        options: ['Early', 'Late'],
+        currentOption: currentStage,
+        setCurrentOption: setCurrentStage,
+    }
+
     const hormoneProps = {
-        options: hormoneOptions
+        options: hormoneOptions,
+        currentOption: currentHormone,
+        setCurrentOption: setCurrentHormone  
     };
 
     const silhouetteProps = {
         peridata: peridata.symptoms.children,
-        selectedCategory: selectedCategory
+        currentCategory: currentCategory,
+        currentView: currentView,
+        currentStage: currentStage,
     }
 
     return (
-        <div className='colony-main flex flex-col h-[100vh] w-[100vw]'>
+        <div className='relative colony-main flex flex-col h-full w-full z-30'>
             <ColonyNavBar />
             <div className='flex flex-row gap-25 justify-between w-[90vw] h-[75vh] min-h-190 my-8 mx-auto text-white'>
                 <div className='relative flex-2 flex flex-col h-full max-w-[25vw]'>
@@ -45,7 +61,7 @@ export default function Colony(props){
                         <ColonySelectorDivided {...viewProps}/>
                         <div className='flex flex-row items-center mt-3'>
                             <h5 className='filter-header'>Stage</h5>
-                            <ColonySelectorPill />
+                            <ColonySelectorPill {...stageProps}/>
                         </div> 
                     </div>
                     <div className='absolute gray-panel w-full h-full top-0 left-0 z-10' />           
@@ -67,27 +83,45 @@ export default function Colony(props){
                     </div>
                 </div>
             </div>
+            <div className='h-25'></div>
         </div>
     )
 }
 
 function ColonyNavBar(){
+    const leftArrowRef = useRef(null);
+
+    useEffect(() => {
+        d3.select(leftArrowRef.current).select('span')
+            .style('transition', 'transform 150ms ease')
+        d3.select(leftArrowRef.current)
+            .on('mouseover', e => {
+                d3.select(leftArrowRef.current).select('span')
+                    .style('transform', 'translate(-5px, 0)')
+            })
+            .on('mouseout', e => {
+                d3.select(leftArrowRef.current).select('span')
+                    .style('transform', null)
+            })
+    }, [])
+
     return (
         <Fragment>
+        <div className='absolute w-full pointer-events-none'>
+            <img src='navbar_ornament.svg' className='mx-auto mt-12'/>
+        </div>
         <div className='flex flex-row items-center justify-between w-[95vw] h-25 mx-auto'>
-            <div className='flex-1 flex flex-row items-center justify-start mt-8'>
-                <a href={'/'}><span><img src='leftArrow.svg' className='inline h-6 mr-3'/></span>Home</a>
+            <div className='flex-1 flex flex-row items-center justify-start mt-13'>
+                <a href={'/'} ref={leftArrowRef}><span className='relative inline-block'><img src='leftArrow.svg' className='inline h-6 mr-3'/></span>Home</a>
+                <a href={'/'} className='blue-button'>Symptom Cluster</a>
             </div>
             <h1 className='flex-1 colony-title text-center'>Colony of Symptoms</h1>
-            <div className='flex-1 flex flex-row justify-end-safe gap-10 mt-8'>
+            <div className='flex-1 flex flex-row justify-end-safe gap-10 mt-13'>
                 <a href={'/'}>Tides</a>
                 <a href={'/'}>Bearing</a>
                 <a href={'/'}>Dear Peri</a>
             </div>               
-        </div>
-        <div className='absolute w-full'>
-            <img src='navbar_ornament.svg' className='mx-auto mt-12'/>
-        </div>
+        </div>       
         </Fragment>
     )
 }

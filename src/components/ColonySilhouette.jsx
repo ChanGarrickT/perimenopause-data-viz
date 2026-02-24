@@ -1,15 +1,18 @@
 import { useState, useEffect, useRef, Fragment } from 'react';
 import * as d3 from "d3";
 import { useResizeObserver, useDebounceCallback } from 'usehooks-ts';
+import filterdata from '../data/filterData.json'
 
 export default function ColonySilhouette(props){
     const svgRef = useRef(null);
     const tooltipRef = useRef(null);
 
+    // Adjust circles on resize
     const [size, setSize] = useState({ width: 0, height: 0 });
     const onResize = useDebounceCallback((size) => setSize(size), 200);
     useResizeObserver({ ref: svgRef, onResize });
 
+    // Create array for drawing
     let data = [];
     for (const category of props.peridata){
         for (const symptom of category.children){
@@ -17,11 +20,32 @@ export default function ColonySilhouette(props){
         }
     }
 
+    // Define filter functions
+    function categoryFilter(d){
+        if(props.currentCategory !== ''){
+            return props.currentCategory === d.category;
+        } else {
+            return true
+        }
+    }
+
+    function viewFilter(d){
+        if(filterdata[props.currentView]) return filterdata[props.currentView].includes(d.name);
+        return true;
+    }
+    
+    function stageFilter(d){
+        if(filterdata[props.currentStage]) return filterdata[props.currentStage].includes(d.name);
+        return true;
+    }
+
+    const filters = [categoryFilter, viewFilter, stageFilter];
+
     useEffect(() => {
         if(data.length === 0) return;
         if(size.width === 0 || size.height === 0) return;
-        plotPoints(svgRef.current, tooltipRef.current, data, props.selectedCategory, size);
-    }, [size, props.selectedCategory]);
+        plotPoints(svgRef.current, tooltipRef.current, data, filters, size);
+    }, [size, props.currentCategory, props.currentView, props.currentStage]);
 
     return (
         <div className='silhouette relative h-full aspect-[1241/1754] mx-auto'>
@@ -31,10 +55,11 @@ export default function ColonySilhouette(props){
     )
 }
 
-function plotPoints(svgElement, tooltipElement, data, selectedCategory, size){
+function plotPoints(svgElement, tooltipElement, data, filters, size){
     const svg = d3.select(svgElement)
     svg.selectAll('circle')
-        .data(data.filter(d => filterSymptoms(d, selectedCategory)), d => d.name)
+        // d => d.name is the identifier for enter/update/exit
+        .data(data.filter(d => filterSymptoms(d, filters)), d => d.name)
         .join(
             function(enter){
                 const circles = enter.append('circle')
@@ -95,8 +120,11 @@ function plotPoints(svgElement, tooltipElement, data, selectedCategory, size){
 }
 
 function filterSymptoms(d, filters){
-    if(filters === '') return true;
-    return d.category === filters;
+    let result = true;
+    for(const f of filters){
+        result &= f(d);
+    }
+    return result;
 }
 
 function getTooltipHtml(d){

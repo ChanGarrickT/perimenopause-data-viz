@@ -144,7 +144,7 @@
             },
             {
                 "name": "Physical",
-                "value": 7297,
+                "value": 8297,
                 "color": "#5778A4",
                 "children": [
                     {
@@ -347,7 +347,7 @@
             },
             {
                 "name": "Sleep / Fatigue",
-                "value": 5358,
+                "value": 6358,
                 "color": "#6A9F58",
                 "children": [
                     {

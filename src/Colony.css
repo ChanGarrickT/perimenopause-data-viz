@@ -5,12 +5,27 @@
     line-height: 1.2;
     background-image: url("image 131.png");
     background-size:cover;
+    overflow: auto;
+    pointer-events: auto;
 }
 
 .colony-title {
     color: white;
     font-family: 'Fragment Mono', Courier, monospace;
     font-size: 18pt;
+}
+
+.blue-button {
+    background-color: #A4C4CC;
+    color: #2F3F4F;
+    padding: 8px 12px;
+    margin: 0 40px;
+    border-radius: 4px;
+    transition: background-color 150ms;
+}
+
+.blue-button:hover {
+    background-color: #BEE2EB;
 }
 
 #colony-tooltip {

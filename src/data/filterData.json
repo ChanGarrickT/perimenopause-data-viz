@@ -1,0 +1,45 @@
+{
+    "Intense": [
+        "Hot Flashes & Night Sweat",
+        "Brain Fog",
+        "Depression",
+        "Anxiety",
+        "Anger",
+        "Frequent Urination"
+    ],
+    "Less Frequent": [
+        "Dry Mouth",
+        "Food Intolerance",
+        "Disorientation",
+        "Decreased Attention",
+        "Loss of Motivation",
+        "Low Self Esteem",
+        "Mental Fatigue"
+    ],
+    "High Frequency": [
+        "Fluctuation in Cycles",
+        "Hot Flashes & Night Sweat",
+        "Stress",
+        "Anxiety",
+        "Insomnia",
+        "Brain Fog" 
+    ],
+    "Early": [
+        "Fluctuation in Cycles",
+        "Breast Tenderness / Pain",
+        "Weight Gain",
+        "Migraine"
+    ],
+    "Late": [
+        "Hot Flashes & Night Sweat",
+        "Heart Palpitations",
+        "Chills",
+        "Temperature Sensitivity",
+        "Brain Fog",
+        "Depression",
+        "Insomnia",
+        "Fatigue",
+        "Vivid Dreams",
+        "Fluctuation in Cycles"
+    ]
+}
