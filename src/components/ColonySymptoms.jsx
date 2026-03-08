@@ -9,7 +9,7 @@ export default function ColonySymptoms(props){
     }
 
     return (
-        <div className='flex flex-col h-7/12 px-4'>
+        <div className='flex flex-col h-1/2 px-4'>
             {
                 props.peridata.map((category, index) => {
                     const chartRowsProps = {
@@ -18,53 +18,36 @@ export default function ColonySymptoms(props){
                         width: category.value / maxCount,
                         color: category.color,
                         currentCategory: props.currentCategory,
-                        setCurrentCategory: props.setCurrentCategory};
-                    return <ChartRows key={index} {...chartRowsProps} />
+                        setCurrentCategory: props.setCurrentCategory,
+                        peridata: props.peridata
+                    };
+                    return <ChartRow key={index} {...chartRowsProps} />
                 })
             }
         </div>
     )
 }
 
-function ChartRows(props){
-    const containerRef = useRef(null)
-    const textRef = useRef(null);
+function ChartRow(props){
     const barRef = useRef(null);
 
-    function selectCategory(){
-        const parent = d3.select(containerRef.current).node().parentNode;
-        d3.select(parent)
-            .selectAll('.chart-text')
-            .transition()
-            .duration(150)
-            .style('color', 'white');
-        d3.select(parent)
-            .selectAll('.chart-bar')
-            .transition()
-            .duration(150)
-            .style('background-color', 'white');
-        if(props.currentCategory !== props.text){
-            // Color clicked category
-            d3.select(textRef.current)
-                .transition()
-                .duration(150)
-                .style('color', props.color)
-            d3.select(barRef.current)
-                .transition()
-                .duration(150)
-                .style('background-color', props.color)
-            props.setCurrentCategory(props.text)
-        } else {
-            // Clear selection if the same category is clicked
-            props.setCurrentCategory('');
-        }
+    useEffect(() => {
+        d3.select(barRef.current)
+            .style('background-color', function(){
+                if(props.currentCategory === '') return props.color;
+                else return props.currentCategory === props.text ? props.color : 'white'
+            })
+    }, [props.currentCategory])
+
+    function selectCategory(option){
+        props.setCurrentCategory((prev) => option === prev ? '' : option)
     }
 
     return (
-        <div ref={containerRef} onClick={selectCategory} key={props.index} className='flex flex-row items-center h-1/8 gap-3'>
-            <div ref={textRef} className='chart-text flex-2'>{props.text}</div>
+        <div onClick={() => selectCategory(props.text)} key={props.index} className='flex-1 flex flex-row items-center gap-3'>
+            <div className='chart-text flex-2 text-white'>{props.text}</div>
             <div className='flex-3'>
-                <div ref={barRef} className='chart-bar bg-white rounded-sm' style={{color: 'rgba(0,0,0,0)', width: `${props.width * 100}%`}}>A</div>
+                <div ref={barRef} className={`chart-bar rounded-sm h-6 text-[#00000000]`} style={{width: `${props.width * 100}%`, backgroundColor: props.color}}>A</div>
             </div>
         </div>
     )

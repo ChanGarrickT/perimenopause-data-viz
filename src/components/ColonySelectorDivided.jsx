@@ -4,17 +4,16 @@ import * as d3 from "d3";
 export default function ColonySelectorDivided(props){
     const containerRef = useRef(null);
 
-    function selectOption(e, option){
+    useEffect(() => {
         const container = d3.select(containerRef.current);
         container.selectAll('.divided-option')
-            .classed('divided-option-selected', false);
-        if(props.currentOption !== option){
-            d3.select(e.currentTarget)
-                .classed('divided-option-selected', true);
-            props.setCurrentOption(option);
-        } else {
-            props.setCurrentOption('');
-        }
+            .classed('divided-option-selected', function(){
+                return props.currentOption === d3.select(this).text();
+            });
+    }, [props.currentOption])
+
+    function selectOption(option){
+        props.setCurrentOption((prev) => option === prev ? '' : option)
     }
 
     return (
@@ -22,12 +21,12 @@ export default function ColonySelectorDivided(props){
             {props.options.map((option, index) => {
                 if(index === props.options.length - 1){
                     return (
-                        <div key={index} onClick={(e) => selectOption(e, option)} className='inline-block divided-option mx-1 px-2 py-1'>{option}</div>
+                        <div key={index} onClick={() => selectOption(option)} className='inline-block divided-option mx-1 px-2 py-1'>{option}</div>
                     )
                 } else {
                     return (
                         <Fragment key={index}>
-                            <div onClick={(e) => selectOption(e, option)} className='inline-block divided-option mx-1 px-2 py-1'>{option}</div>
+                            <div onClick={() => selectOption(option)} className='inline-block divided-option mx-1 px-2 py-1'>{option}</div>
                             <span className='inline border-gray-400 border-1 h-8'></span>
                         </Fragment>
                     )

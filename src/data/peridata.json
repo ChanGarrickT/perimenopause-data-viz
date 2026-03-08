@@ -40,7 +40,7 @@
                         "value": 5000,
                         "x": 0.521,
                         "y": 0.042,
-                        "hovertext": ""
+                        "hovertext": "Stress may feel stronger, harder to recover from, and can amplify other symptoms."
                     },
                     {
                         "name": "Anxiety",
@@ -61,21 +61,21 @@
                         "value": 1170,
                         "x": 0.461,
                         "y": 0.048,
-                        "hovertext": ""
+                        "hovertext": "Changes in estrogen during perimenopause can disrupt dopamine regulation, which may worsen ADHD symptoms such as inattention, overwhelm, and emotional reactivity."
                     },
                     {
                         "name": "Panic",
                         "value": 993,
                         "x": 0.468,
                         "y": 0.062,
-                        "hovertext": ""
+                        "hovertext": "Panic attacks may become more frequent or intense due to hormonal changes."
                     },
                     {
                         "name": "Anger",
                         "value": 987,
                         "x": 0.533,
                         "y": 0.056,
-                        "hovertext": ""
+                        "hovertext": "Small frustrations can trigger sudden irritability or outbursts due to hormonal fluctuations."
                     },
                     {
                         "name": "Depression",
@@ -152,7 +152,7 @@
                         "value": 1748,
                         "x": 0.464,
                         "y": 0.353,
-                        "hovertext": "Unexplained weight gain is one of the early indicators of Perimenopause."
+                        "hovertext": "Weight gain may occur more easily, especially around the abdomen, even without changes in diet or activity. Hormonal shifts can affect metabolism, fat storage, and insulin sensitivity. Unexplained weight gain is one of the early indicators of Perimenopause."
                     },
                     {
                         "name": "Vision Changes",
@@ -166,14 +166,14 @@
                         "value": 779,
                         "x": 0.58,
                         "y": 0.209,
-                        "hovertext": ""
+                        "hovertext": "Body odor may change or become stronger. Hormonal shifts can increase sweating and alter skin bacteria, leading to noticeable changes in scent."
                     },
                     {
                         "name": "Bone Health",
                         "value": 741,
                         "x": 0.416,
                         "y": 0.66,
-                        "hovertext": ""
+                        "hovertext": "Bone density may begin to decline as estrogen and testosterone levels fluctuate, increasing the risk of bone loss over time."
                     },
                     {
                         "name": "Breast Tenderness / Pain",
@@ -222,7 +222,7 @@
                         "value": 199,
                         "x": 0.617,
                         "y": 0.172,
-                        "hovertext": ""
+                        "hovertext": "Shoulder stiffness and pain may increase due to hormonal changes."
                     },
                     {
                         "name": "Pelvic Discomfort",
@@ -243,7 +243,7 @@
                         "value": 124,
                         "x": 0.574,
                         "y": 0.087,
-                        "hovertext": "Tinnitus or Ringing Ear are one of the least discussed symptoms"
+                        "hovertext": "Tinnitus or Ringing Ear are one of the least discussed symptoms. It may appear or worsen during perimenopause. Hormonal changes can affect the inner ear and nervous system, leading to ringing or buzzing sounds."
                     },
                     {
                         "name": "Back Pain",
@@ -278,7 +278,7 @@
                         "value": 76,
                         "x": 0.548,
                         "y": 0.194,
-                        "hovertext": ""
+                        "hovertext": "Sudden electric shock-like sensations or internal tremors may occur. These can feel brief but intense and are linked to nervous system sensitivity during hormonal fluctuations."
                     },
                     {
                         "name": "Tingling",
@@ -306,7 +306,7 @@
                         "value": 52,
                         "x": 0.486,
                         "y": 0.299,
-                        "hovertext": ""
+                        "hovertext": "Insulin resistance may increase during perimenopause. Hormonal changes can affect how the body processes sugar, making blood glucose harder to regulate."
                     },
                     {
                         "name": "Crawling on Skin",
@@ -327,7 +327,7 @@
                         "value": 25,
                         "x": 0.508,
                         "y": 0.125,
-                        "hovertext": ""
+                        "hovertext": "Dry mouth may occur as hormonal changes affect saliva production, leading to discomfort or a persistent dry sensation."
                     },
                     {
                         "name": "Food Intolerance",
@@ -362,14 +362,14 @@
                         "value": 1230,
                         "x": 0.5,
                         "y": 0.034,
-                        "hovertext": ""
+                        "hovertext": "Fatigue may feel persistent or overwhelming, even with adequate rest. Hormonal changes can disrupt sleep, energy regulation, and recovery."
                     },
                     {
                         "name": "Vivid Dreams",
                         "value": 42,
                         "x": 0.532,
                         "y": 0.025,
-                        "hovertext": ""
+                        "hovertext": "Dreams may become more vivid, intense, or memorable. Hormonal changes can affect sleep cycles and REM sleep, making dreams feel more lifelike."
                     }
                 ]
             },
@@ -383,14 +383,14 @@
                         "value": 3862,
                         "x": 0.512,
                         "y": 0.023,
-                        "hovertext": ""
+                        "hovertext": "Brain fog may cause forgetfulness, slower thinking, or difficulty concentrating. Reduced Estrogen levels and Hormonal fluctuations can affect memory, attention, and mental clarity."
                     },
                     {
                         "name": "Migraine",
                         "value": 1812,
                         "x": 0.479,
                         "y": 0.041,
-                        "hovertext": ""
+                        "hovertext": "Migraine/ Headache often caused due to low or absent Progesterone. It is one of the early indicators of Perimenopause."
                     },
                     {
                         "name": "Memory Lapse",
@@ -404,7 +404,7 @@
                         "value": 568,
                         "x": 0.486,
                         "y": 0.021,
-                        "hovertext": ""
+                        "hovertext": "Dizziness or vertigo may occur, causing a spinning sensation or feeling unsteady. Hormonal fluctuations can affect balance, blood flow, and the inner ear."
                     },
                     {
                         "name": "Decreased Attention",
@@ -425,7 +425,7 @@
                         "value": 6812,
                         "x": 0.591,
                         "y": 0.247,
-                        "hovertext": "Hot flashes affect up to 70% of women, vary by race/ethnicity ~ Rates are high among African-American & Native American women ; Chinese & Japanese women have lower rates & a shorter overall duratiion of hot flashes. Elevated FSH and fluctuating estrogen are predictive of hot flashes."
+                        "hovertext": "Sudden waves of heat, flushing, or sweating may occur during the day or night. Hot flashes affect up to 70% of women, vary by race/ethnicity ~ Rates are high among African-American & Native American women ; Chinese & Japanese women have lower rates & a shorter overall duratiion of hot flashes. Elevated FSH and fluctuating estrogen are predictive of hot flashes."
                     },
                     {
                         "name": "Heart Palpitations",
@@ -460,21 +460,21 @@
                         "value": 1762,
                         "x": 0.496,
                         "y": 0.047,
-                        "hovertext": "Fluctuations in testosterone can lead to Low/High Libido"
+                        "hovertext": "Libido may increase or decrease during perimenopause. Hormonal fluctuations can affect desire, arousal, energy levels, and comfort. Fluctuations in testosterone and progesterone can lead to decreased Libido"
                     },
                     {
                         "name": "Frequent Urination",
                         "value": 414,
                         "x": 0.419,
                         "y": 0.419,
-                        "hovertext": ""
+                        "hovertext": "Declining estrogen can weaken pelvic tissues and increase bladder sensitivity, leading to frequent urination."
                     },
                     {
                         "name": "Urinary Tract Infection",
                         "value": 198,
                         "x": 0.405,
                         "y": 0.409,
-                        "hovertext": ""
+                        "hovertext": "Urinary tract infections may occur more often during perimenopause. Hormonal changes can affect the urinary tract lining and natural protective bacteria."
                     },
                     {
                         "name": "Vaginal Dryness & Irritation",
@@ -502,42 +502,42 @@
                         "value": 1163,
                         "x": 0.464,
                         "y": 0.027,
-                        "hovertext": ""
+                        "hovertext": "Hair may become thinner or shed more than usual. Hormonal changes can affect hair growth cycles, leading to noticeable thinning over time."
                     },
                     {
                         "name": "Skin Issues",
                         "value": 880,
                         "x": 0.454,
                         "y": 0.112,
-                        "hovertext": ""
+                        "hovertext": "Acne may appear or worsen during perimenopause. Hormonal shifts can increase oil production and inflammation, leading to breakouts even if acne wasn’t an issue before."
                     },
                     {
                         "name": "Allergy",
                         "value": 260,
                         "x": 0.502,
                         "y": 0.113,
-                        "hovertext": ""
+                        "hovertext": "Allergies may appear or worsen during perimenopause. Hormonal changes can affect immune responses, making the body more sensitive to triggers."
                     },
                     {
                         "name": "Dry & Itchy Ear",
                         "value": 157,
                         "x": 0.576,
                         "y": 0.075,
-                        "hovertext": ""
+                        "hovertext": "Ears may feel dry or itchy as hormonal changes affect skin moisture and sensitivity."
                     },
                     {
                         "name": "Dry Skin",
                         "value": 73,
                         "x": 0.61,
                         "y": 0.466,
-                        "hovertext": ""
+                        "hovertext": "Skin may become drier, itchier, or more sensitive. Hormonal changes can affect collagen, oil production, and skin barrier function."
                     },
                     {
                         "name": "Brittle Nail",
                         "value": 71,
                         "x": 0.573,
                         "y": 0.521,
-                        "hovertext": ""
+                        "hovertext": "Nails may become brittle, thin, or prone to breaking as hormonal changes affect keratin production and moisture."
                     }
                 ]
             }

@@ -8,15 +8,23 @@ import ColonySelectorDivided from './ColonySelectorDivided';
 import ColonySelectorPill from './ColonySelectorPill';
 import ColonySilhouette from './ColonySilhouette';
 import { NavLink } from 'react-router-dom';
+import { showTooltip, moveTooltip, hideTooltip } from '../utils';
 
 const viewOptions = ['Intense', 'Less Frequent', 'High Frequency'];
-const hormoneOptions = ['Estrogen', 'Progesterone', 'FSH', 'Testosterone'];
+const hormoneOptions = ['FSH', 'Testosterone', 'Estrogen', 'Progesterone'];
 
 export default function Colony(props){
     const [currentCategory, setCurrentCategory] = useState('');
     const [currentView, setCurrentView] = useState('');
     const [currentStage, setCurrentStage] = useState('');
     const [currentHormone, setCurrentHormone] = useState('');
+
+    function clearFilters(){
+        setCurrentCategory('');
+        setCurrentView('')
+        setCurrentStage('');
+        setCurrentHormone('');
+    }
 
     const symptomsProps = {
         peridata: peridata.symptoms.children,
@@ -47,13 +55,14 @@ export default function Colony(props){
         currentCategory: currentCategory,
         currentView: currentView,
         currentStage: currentStage,
+        currentHormone: currentHormone
     }
 
     return (
         <div className='relative colony-main flex flex-col h-full w-full z-30'>
             <ColonyNavBar />
-            <div className='flex flex-row gap-25 justify-between w-[90vw] h-[75vh] min-h-190 my-8 mx-auto text-white'>
-                <div className='relative flex-2 flex flex-col h-full max-w-[25vw]'>
+            <div className='flex flex-row gap-16 justify-between w-[85vw] h-[75vh] min-h-190 my-8 mx-auto text-white'>
+                <div className='relative flex-3 flex flex-col h-full max-w-[30vw]'>
                     <div className='gray-panel-content flex flex-col h-full gap-4 z-20'>
                         <h5 className='filter-header'>Select a Symptom</h5>
                         <ColonySymptoms {...symptomsProps}/>
@@ -69,7 +78,7 @@ export default function Colony(props){
                 <div className='h-full'>
                     <ColonySilhouette {...silhouetteProps}/>
                 </div>
-                <div className='flex-2 flex flex-col h-full max-w-[25vw]'>
+                <div className='flex-3 flex flex-col h-full max-w-[30vw]'>
                     <div className='relative flex-2 h-full'>
                         <div className='gray-panel-content relative flex flex-col h-full gap-4 z-20'>
                             <h5 className='filter-header'>Hormones</h5>
@@ -79,7 +88,7 @@ export default function Colony(props){
                         <div className='absolute gray-panel w-full h-full top-0 left-0 z-10' />
                     </div>
                     <div className='flex-1 m-5'>
-                        This visualization maps the range of symptoms experienced during this stage. The panel on the right lists symptoms identified through analysis of 38,900 comments from online community discussions on Reddit, ordered by frequency. On the left, the panel shows how low/high hormones results to symptoms and age range observed in the dataset.
+                        <button className='clear-filter' onClick={clearFilters}>Clear Filters</button>
                     </div>
                 </div>
             </div>
@@ -90,6 +99,7 @@ export default function Colony(props){
 
 function ColonyNavBar(){
     const leftArrowRef = useRef(null);
+    const tooltipRef = useRef(null);
 
     useEffect(() => {
         d3.select(leftArrowRef.current).select('span')
@@ -105,23 +115,23 @@ function ColonyNavBar(){
             })
     }, [])
 
+    const paragraph = 'This visualization maps the range of symptoms experienced during this stage. The panel on the right lists symptoms identified through analysis of 38,900 comments from online community discussions on Reddit, ordered by frequency. On the left, the panel shows how low/high hormones results to symptoms and age range observed in the dataset.'
+
     return (
-        <Fragment>
-        <div className='absolute w-full pointer-events-none'>
-            <img src='navbar_ornament.svg' className='mx-auto mt-12'/>
-        </div>
-        <div className='flex flex-row items-center justify-between w-[95vw] h-25 mx-auto'>
-            <div className='flex-1 flex flex-row items-center justify-start mt-13'>
-                <a href={'/'} ref={leftArrowRef}><span className='relative inline-block'><img src='leftArrow.svg' className='inline h-6 mr-3'/></span>Home</a>
-                <a href={'/'} className='blue-button'>Symptom Cluster</a>
-            </div>
-            <h1 className='flex-1 colony-title text-center'>Colony of Symptoms</h1>
-            <div className='flex-1 flex flex-row justify-end-safe gap-10 mt-13'>
-                <a href={'/'}>Tides</a>
-                <a href={'/'}>Bearing</a>
-                <a href={'/'}>Dear Peri</a>
+        <div className='relative flex flex-row items-center justify-between w-full h-25'>
+            <div ref={tooltipRef} className='absolute bg-[#00000088] text-white p-5 rounded-lg z-50 text-sm w-100 pointer-events-none opacity-0'></div>
+            <div className='flex-1 flex flex-row items-center justify-start z-50'>
+                <a href={'/'} ref={leftArrowRef}><span className='relative inline-block'><img src='leftArrow.svg' className='inline h-6 ml-16 mr-3'/></span>Back</a>
+                <h1 className='colony-title ml-10 mr-2'>Colony of Symptoms</h1>
+                <img src='info.svg' style={{height: '20px'}} onMouseOver={(e) => showTooltip(e, paragraph, tooltipRef)} onMouseOut={(e) => hideTooltip(tooltipRef)}/>
+            </div>            
+            <div className='flex-1 flex flex-row justify-end-safe gap-10 z-50'>
+                <a href={'/'} className='text-[#B7CFEC]'>Symptom Cluster</a>
+                <span className='inline border-gray-400 border-1 h-5'></span>
+                <a href={'/'}>Experiences</a>
+                <a href={'/'}>Approach</a>
+                <a href={'/'} className='mr-16'>Dear Peri</a>
             </div>               
         </div>       
-        </Fragment>
     )
 }

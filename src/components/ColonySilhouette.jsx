@@ -39,13 +39,18 @@ export default function ColonySilhouette(props){
         return true;
     }
 
-    const filters = [categoryFilter, viewFilter, stageFilter];
+    function hormoneFilter(d){
+        if(filterdata[props.currentHormone]) return filterdata[props.currentHormone].includes(d.name);
+        return true;
+    }
+
+    const filters = [categoryFilter, viewFilter, stageFilter, hormoneFilter];
 
     useEffect(() => {
         if(data.length === 0) return;
         if(size.width === 0 || size.height === 0) return;
         plotPoints(svgRef.current, tooltipRef.current, data, filters, size);
-    }, [size, props.currentCategory, props.currentView, props.currentStage]);
+    }, [size, props.currentCategory, props.currentView, props.currentStage, props.currentHormone]);
 
     return (
         <div className='silhouette relative h-full aspect-[1241/1754] mx-auto'>
@@ -59,7 +64,7 @@ function plotPoints(svgElement, tooltipElement, data, filters, size){
     const svg = d3.select(svgElement)
     svg.selectAll('circle')
         // d => d.name is the identifier for enter/update/exit
-        .data(data.filter(d => filterSymptoms(d, filters)), d => d.name)
+        .data(data.filter(d => filterSymptoms(d, filters)).toSorted((a, b) => b.value - a.value), d => d.name)
         .join(
             function(enter){
                 const circles = enter.append('circle')
@@ -67,6 +72,8 @@ function plotPoints(svgElement, tooltipElement, data, filters, size){
                     .attr('cy', d => d.y * size.height)
                     .attr('r', 0)
                     .attr('fill', d => d.color)
+                    .attr('stroke', '#555')
+                    .attr('stroke-width', 1)
                     .style('cursor', 'pointer')
                     .on('mouseover', function(e, d) {
                         d3.select(tooltipElement)
@@ -95,12 +102,13 @@ function plotPoints(svgElement, tooltipElement, data, filters, size){
                         d3.select(this)
                             .transition()
                             .duration(150)
-                            .attr('stroke-width', 0)
+                            .attr('stroke', '#555')
+                            .attr('stroke-width', 1)
                     })
                 
                 circles.transition()
                     .duration(200)
-                    .attr('r', 6)
+                    .attr('r', d => getRadius(d.value))
             },
             function(update){
                 update
@@ -125,6 +133,13 @@ function filterSymptoms(d, filters){
         result &= f(d);
     }
     return result;
+}
+
+function getRadius(value){
+    if(value <= 100) return 5;          
+    if(value <= 500) return 7;
+    if(value <= 5000) return 9;
+    return 11;
 }
 
 function getTooltipHtml(d){
