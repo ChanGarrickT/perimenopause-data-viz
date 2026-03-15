@@ -12,7 +12,7 @@ const drawParams = {
     fillEnabled: d => colorMap[d.group],
     fillDisabled: '#EEE',
     strokeClear: d => d.weight,
-    strokeEnabled: 1.5,
+    strokeEnabled: d => 5 * Math.pow(d.weight, 3),
     strokeDisabled: 0
 }
 
@@ -106,7 +106,7 @@ export default function ClusterChart(props){
             .transition().duration(200)
             .attr('stroke-width', function(d){
                 if(props.currentSymptom === '') return drawParams.strokeClear(d);
-                if(d.source.id === props.currentSymptom || d.target.id === props.currentSymptom) return drawParams.strokeEnabled;
+                if(d.source.id === props.currentSymptom || d.target.id === props.currentSymptom) return drawParams.strokeEnabled(d);
                 return drawParams.strokeDisabled;
             })
 
@@ -146,7 +146,7 @@ export default function ClusterChart(props){
             if(props.currentNeighbors.includes(d.id)) return forces.xyCtrNeighbor;
             return forces.xyCtrDeselected;
         });
-        
+
         // Reheat the animation in case the selection is changed from another component
         simulation.alphaTarget(0.1).restart();
         setTimeout(() => simulation.alphaTarget(0), 2000);

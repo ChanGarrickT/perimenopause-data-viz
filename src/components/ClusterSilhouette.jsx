@@ -6,6 +6,8 @@ import colorMap from '../data/colorMap.json';
 
 export default function ClusterSilhouette(props){
     const svgRef = useRef(null);
+    const circlesRef = useRef(null);
+    const linesRef = useRef(null);
     const tooltipRef = useRef(null);
 
     // Adjust circles on resize
@@ -24,25 +26,50 @@ export default function ClusterSilhouette(props){
     useEffect(() => {
         if(data.length === 0) return;
         if(size.width === 0 || size.height === 0) return;
-        plotPoints(svgRef.current, tooltipRef.current, data, size, props);
+        plotPoints(svgRef.current, circlesRef.current, linesRef.current, tooltipRef.current, data, size, props);
     }, [size, props.currentNeighbors]);
 
     return (
         <div className='silhouette absolute h-19/20 aspect-[1241/1754] -top-full -bottom-full -left-full -right-full m-auto'>
             <div ref={tooltipRef} id='colony-tooltip' className='fixed w-100 text-sm p-2 rounded-md'></div>
-            <svg ref={svgRef} width='100%' height='100%'></svg>
+            <svg ref={svgRef} width='100%' height='100%'>
+                <g ref={linesRef}></g>
+                <g ref={circlesRef}></g>
+            </svg>
         </div>
     )
 }
 
-function plotPoints(svgElement, tooltipElement, data, size, props){
-    const svg = d3.select(svgElement)
-    svg.selectAll('circle')
+function plotPoints(svgElement, circlesGrp, linesGrp, tooltipElement, data, size, props){
+    // Pre filter data to allow drawing of links
+    const neighbors = [];
+    let selected = null;
+    if(props.currentSymptom !== ''){
+        for(const d of data){
+            if(d.name === props.currentSymptom) selected = d;
+            else if(props.currentNeighbors.includes(d.name)) neighbors.push(d)
+        }
+    }
+
+    // Draw links if a symptom is selected
+    d3.select(linesGrp).selectAll('line').remove();
+    if(props.currentSymptom !== ''){
+        d3.select(linesGrp).selectAll('line')
+            .data(neighbors)
+            .join('line')
+            .attr('x1', selected.x * size.width)
+            .attr('y1', selected.y * size.height)
+            .attr('x2', d => d.x * size.width)
+            .attr('y2', d => d.y * size.height)
+            .attr('fill', 'none')
+            .attr('stroke', colorMap[selected.category])
+            .attr('stroke-width', 1.5)
+            .attr('stroke-dasharray', '2 1')
+    }
+
+    d3.select(circlesGrp).selectAll('circle')
         // d => d.name is the identifier for enter/update/exit
-        .data(data.filter(function(d){
-            if(props.currentSymptom === '') return true;
-            return d.name === props.currentSymptom || props.currentNeighbors.includes(d.name);
-        }), d => d.name)
+        .data(neighbors.length > 0 ? [...neighbors, selected] : data, d => d.name)
         .join(
             function(enter){
                 const circles = enter.append('circle')
@@ -87,7 +114,10 @@ function plotPoints(svgElement, tooltipElement, data, size, props){
                 
                 circles.transition()
                     .duration(200)
-                    .attr('r', 4)
+                    .attr('r', function(d){
+                        if(props.currentSymptom === d.name) return 6;
+                        return 4;
+                    })
             },
             function(update){
                 update
