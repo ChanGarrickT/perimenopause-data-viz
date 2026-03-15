@@ -1,0 +1,253 @@
+import { useState, useEffect, useRef } from 'react';
+import * as d3 from 'd3';
+import { useResizeObserver, useDebounceCallback } from 'usehooks-ts';
+import clusterData from '../data/symptomClusters.json';
+import colorMap from '../data/colorMap.json';
+import { showTooltip, moveTooltip, hideTooltip } from '../utils';
+
+const drawParams = {
+    sizeClear: 5,
+    sizeSelected: 15,
+    sizeNeighbor: 8,
+    fillEnabled: d => colorMap[d.group],
+    fillDisabled: '#EEE',
+    strokeClear: d => d.weight,
+    strokeEnabled: 1.5,
+    strokeDisabled: 0
+}
+
+// Force parameters for easy adjustments
+const forces = {
+    chargeClear: -200,          // Negative for repulsion
+    chargeSelected: -600,
+    chargeNeighbor: -600,
+    chargeNotSelected: -100,
+    collideClear: 5,
+    collideSelected: 20,
+    collideNeighbor: 12,
+    collideNotSelected: 8,
+    linkClear: d => 0.5 * Math.pow(d.weight, 4),
+    linkSelected: 0,
+    linkNotSelected: 0,
+    xyGrpSelected: 0.1,
+    xyGrpNeighbor: 0.5,
+    xyGrpDeselected: 1,
+    xyCtrSelected: 0.9,
+    xyCtrDeselected: 0,
+    xyCtrNeighbor: 0.5
+}
+
+// Copy data structure for simulation to mutate
+const nodes = clusterData.nodes.map(d => ({...d}));
+const links = clusterData.links.map(d => ({...d}));
+const simulation = d3.forceSimulation(nodes)
+    .force('link', d3.forceLink(links).id(d => d.id).strength(forces.linkClear))
+    .force('charge', d3.forceManyBody().strength(forces.chargeClear).distanceMax(500))
+    .force('collide', d3.forceCollide().radius(forces.collideClear))
+    .force('xGroup', d3.forceX(0).strength(forces.xyGrpDeselected))
+    .force('yGroup', d3.forceY(0).strength(forces.xyGrpDeselected))
+    .force('xCentripetal', d3.forceX(0).strength(forces.xyCtrDeselected))
+    .force('yCentripetal', d3.forceY(0).strength(forces.xyCtrDeselected))
+
+export default function ClusterChart(props){
+    const svgRef = useRef(null);
+    const tooltipRef = useRef(null);
+    const [circleGrpRef, lineGrpRef] = [useRef(null), useRef(null)];
+
+    const [size, setSize] = useState({ width: 0, height: 0 });
+    const onResize = useDebounceCallback((size) => setSize(size), 200);
+    useResizeObserver({ ref: svgRef, onResize });
+
+    useEffect(() => {
+        if(size.width === 0 || size.height === 0) return;
+        // Update size-dependent forces
+        simulation.force('xGroup').x(d => clusterXY(d.group, 'x', size));
+        simulation.force('yGroup').y(d => clusterXY(d.group, 'y', size));
+        simulation.force('xCentripetal').x(size.width / 2);
+        simulation.force('yCentripetal').y(size.height / 2);
+        drawChart(svgRef.current, tooltipRef, circleGrpRef.current, lineGrpRef.current, props, size);
+        simulation.alphaTarget(0.3).restart();
+    }, [size]);
+
+    // When a new symptom is selected, update neighbors list accordingly
+    useEffect(() => {
+        if(props.currentSymptom === '') props.setCurrentNeighbors([]);
+        else {
+            const neighbors = new Set();
+            for(const link of links){
+                if(link.source.id === props.currentSymptom) neighbors.add(link.target.id);
+                if(link.target.id === props.currentSymptom) neighbors.add(link.source.id);
+            }
+            props.setCurrentNeighbors([...neighbors])
+        }
+    }, [props.currentSymptom])
+
+    useEffect(() => {
+        const circles = d3.select(circleGrpRef.current).selectAll('circle');
+        if(circles.size() < 1) return;
+        // Emphasize selected nodes and gray out others
+        circles
+            .data(nodes)
+            .transition().duration(200)
+            .attr('r', function(d){
+                if(d.id === props.currentSymptom) return drawParams.sizeSelected;
+                if(props.currentNeighbors.includes(d.id)) return drawParams.sizeNeighbor;
+                return drawParams.sizeClear;
+            })
+            .attr('fill', function(d){
+                if(props.currentSymptom === '') return drawParams.fillEnabled(d);
+                if(props.currentNeighbors.includes(d.id) || d.id === props.currentSymptom) return drawParams.fillEnabled(d);
+                else return drawParams.fillDisabled;
+            })
+        // Emphasize selected connections and hide others
+        const lines = d3.select(lineGrpRef.current).selectAll('line');
+        lines
+            .data(links)
+            .transition().duration(200)
+            .attr('stroke-width', function(d){
+                if(props.currentSymptom === '') return drawParams.strokeClear(d);
+                if(d.source.id === props.currentSymptom || d.target.id === props.currentSymptom) return drawParams.strokeEnabled;
+                return drawParams.strokeDisabled;
+            })
+
+        // Adjust many body forces according to selection
+        simulation.force('charge').strength(function(d){
+            if(props.currentSymptom === '') return forces.chargeClear;
+            if(props.currentSymptom === d.id) return forces.chargeSelected;
+            if(props.currentNeighbors.includes(d.id)) return forces.chargeNeighbor;
+            return forces.chargeNotSelected;
+        });
+        // Adjust collision forces according to selection
+        simulation.force('collide').radius(function(d){
+            if(props.currentSymptom === '') return forces.collideClear;
+            if(props.currentSymptom === d.id) return forces.collideSelected;
+            if(props.currentNeighbors.includes(d.id)) return forces.collideNeighbor;
+            return forces.collideNotSelected;
+        })
+        // Adjust cluster-directed position forces according to selection
+        simulation.force('xGroup').strength(function(d){
+            if(props.currentSymptom === d.id) return forces.xyGrpSelected;
+            if(props.currentNeighbors.includes(d.id)) return forces.xyGrpNeighbor;
+            return forces.xyGrpDeselected;
+        });
+        simulation.force('yGroup').strength(function(d){
+            if(props.currentSymptom === d.id) return forces.xyGrpSelected;
+            if(props.currentNeighbors.includes(d.id)) return forces.xyGrpNeighbor;
+            return forces.xyGrpDeselected;
+        });
+        // Adjust centripetal position forces according to selection
+        simulation.force('xCentripetal').strength(function(d){
+            if(props.currentSymptom === d.id) return forces.xyCtrSelected;
+            if(props.currentNeighbors.includes(d.id)) return forces.xyCtrNeighbor;
+            return forces.xyCtrDeselected;
+        });
+        simulation.force('yCentripetal').strength(function(d){
+            if(props.currentSymptom === d.id) return forces.xyCtrSelected;
+            if(props.currentNeighbors.includes(d.id)) return forces.xyCtrNeighbor;
+            return forces.xyCtrDeselected;
+        });
+        
+        // Reheat the animation in case the selection is changed from another component
+        simulation.alphaTarget(0.1).restart();
+        setTimeout(() => simulation.alphaTarget(0), 2000);
+    }, [props.currentNeighbors])
+
+    return (
+        <div className='w-full h-full'>
+            <div ref={tooltipRef} className='tooltip'></div>
+            <svg ref={svgRef} width='100%' height='100%'>
+                <g ref={lineGrpRef}></g>
+                <g ref={circleGrpRef}></g>
+            </svg>
+        </div>
+    )
+}
+
+function drawChart(svgElement, tooltipRef, circleGrp, lineGrp, props, size){
+    // Draw the lines
+    const lines = d3.select(lineGrp)        
+        .selectAll('line')
+        .data(links, d => `${d.source.id} -> ${d.target.id}`)
+        .join('line')
+        .attr('stroke-opacity', d => d.weight)
+        .attr('stroke-width', d => Math.pow(d.weight, 2))
+        .attr('stroke', '#CCC')
+        .attr('stroke-dasharray', '6')
+           
+    // Draw the circles
+    const circles = d3.select(circleGrp)
+        .selectAll('circle')
+        .data(nodes, d => d.id)
+        .join('circle')
+        .attr('r', drawParams.sizeClear)
+        .attr('fill', d => colorMap[d.group])
+        .style('filter', 'drop-shadow(0px 1px 2px black)')
+        .on('click', function(e, d){
+            props.setCurrentSymptom((prev) => d.id !== prev ? d.id : '')
+        })
+        .on('mouseover', (e, d) => showTooltip(e, d.id, tooltipRef))
+        .on('mousemove', (e) => moveTooltip(e, tooltipRef))
+        .on('mouseout', () => hideTooltip(tooltipRef))
+    
+    simulation.on('tick', () => {
+        lines
+            .attr('x1', d => d.source.x)
+            .attr('y1', d => d.source.y)
+            .attr('x2', d => d.target.x)
+            .attr('y2', d => d.target.y);
+        circles
+            .attr('cx', d => d.x)
+            .attr('cy', d => d.y);
+    });
+
+    // Attach dragging behavior to nodes
+    circles.call(d3.drag()
+        .on('start', dragStarted)
+        .on('drag', dragged)
+        .on('end', dragEnded)
+    )
+}
+
+function clusterXY(category, axis, size){
+    switch (category) {
+    case 'Vasomotor':
+        return axis === 'x' ? size.width*0.5 : size.height*0.8;
+    case 'Cognitive':
+        return axis === 'x' ? size.width*0.8 : size.height*0.8;
+    case 'Psychological & Emotional':
+        return axis === 'x' ? size.width*0.5 : size.height*0.2;
+    case 'Sleep':
+        return axis === 'x' ? size.width*0.8 : size.height*0.5;
+    case 'Urological & Sexual':
+        return axis === 'x' ? size.width*0.2 : size.height*0.5;
+    case 'Dermatological & Sensory':
+        return axis === 'x' ? size.width*0.2 : size.height*0.8;
+    case 'Physical':
+        return axis === 'x' ? size.width*0.8 : size.height*0.2;
+    case 'Menstrual':
+        return axis === 'x' ? size.width*0.2 : size.height*0.2;
+    default:
+        return axis === 'x' ? size.width*0.5 : size.height*0.5;
+  }
+}
+
+// Reheat the simulation when drag starts, and lock the dragged node's position.
+function dragStarted(event) {
+    if (!event.active) simulation.alphaTarget(0.1).restart();
+    event.subject.fx = event.subject.x;
+    event.subject.fy = event.subject.y;
+}
+
+// Move the dragged node
+function dragged(event) {
+    event.subject.fx = event.x;
+    event.subject.fy = event.y;
+}
+
+// Cool sim after dragging ends.
+// Unlock dragged node's position upon release.
+function dragEnded(event) {
+    if (!event.active) simulation.alphaTarget(0);
+    event.subject.fx = null;
+    event.subject.fy = null;
+}

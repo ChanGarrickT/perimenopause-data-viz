@@ -108,8 +108,7 @@ function AgeGraph() {
   }, []);
 
   return (
-    <div className="age-panel">
-      <h3 className="age-title">Age</h3>
+    <div className="age-panel mx-auto">
       <svg ref={svgRef} width={260} height={140} />
     </div>
   );

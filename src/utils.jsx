@@ -2,7 +2,7 @@ import * as d3 from 'd3';
 
 export function showTooltip(e, text, ref){
 	d3.select(ref.current)
-		.text(text)
+		.html(text)
 		.style('left', `${e.clientX + 10}px`)
 		.style('top', `${e.clientY + 10}px`)
 		.transition()

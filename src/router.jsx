@@ -3,6 +3,7 @@ import Home from "./components/Home";
 import Symptomgalaxy from "./components/Symptomgalaxy";
 import DIYData from "./components/DIYData";
 import Colony from "./components/Colony";
+import Cluster from "./components/Cluster";
 
 const router = createBrowserRouter([
   {
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
   {
     path: "/colony",
     element: <Colony />
+  },
+  {
+    path: "/cluster",
+    element: <Cluster />
   }
 ]);
 
