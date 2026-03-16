@@ -65,20 +65,32 @@ export default function ClusterChart(props){
         simulation.force('yGroup').y(d => clusterXY(d.group, 'y', size));
         simulation.force('xCentripetal').x(size.width / 2);
         simulation.force('yCentripetal').y(size.height / 2);
-        drawChart(svgRef.current, tooltipRef, circleGrpRef.current, lineGrpRef.current, props, size);
+        drawChart(tooltipRef, circleGrpRef.current, lineGrpRef.current, props, size);
         simulation.alphaTarget(0.3).restart();
     }, [size]);
 
     // When a new symptom is selected, update neighbors list accordingly
     useEffect(() => {
-        if(props.currentSymptom === '') props.setCurrentNeighbors([]);
+        if(props.currentSymptom === ''){
+            props.setCurrentNeighbors([]);
+
+            // Stop lines from animating
+            d3.select(lineGrpRef.current)
+                .selectChildren('line')
+                .classed('paused', true);
+        }
         else {
             const neighbors = new Set();
             for(const link of links){
                 if(link.source.id === props.currentSymptom) neighbors.add(link.target.id);
                 if(link.target.id === props.currentSymptom) neighbors.add(link.source.id);
             }
-            props.setCurrentNeighbors([...neighbors])
+            props.setCurrentNeighbors([...neighbors]);
+            
+            // Animate lines
+            d3.select(lineGrpRef.current)
+                .selectChildren('line')
+                .classed('paused', false);
         }
     }, [props.currentSymptom])
 
@@ -150,7 +162,7 @@ export default function ClusterChart(props){
         // Reheat the animation in case the selection is changed from another component
         simulation.alphaTarget(0.1).restart();
         setTimeout(() => simulation.alphaTarget(0), 2000);
-    }, [props.currentNeighbors])
+    }, [props.currentNeighbors]);
 
     return (
         <div className='w-full h-full'>
@@ -163,7 +175,7 @@ export default function ClusterChart(props){
     )
 }
 
-function drawChart(svgElement, tooltipRef, circleGrp, lineGrp, props, size){
+function drawChart(tooltipRef, circleGrp, lineGrp, props, size){
     // Draw the lines
     const lines = d3.select(lineGrp)        
         .selectAll('line')
@@ -171,8 +183,8 @@ function drawChart(svgElement, tooltipRef, circleGrp, lineGrp, props, size){
         .join('line')
         .attr('stroke-opacity', d => d.weight)
         .attr('stroke-width', d => Math.pow(d.weight, 2))
-        .attr('stroke', '#CCC')
-        .attr('stroke-dasharray', '6')
+        .attr('stroke', d => colorMap[d.source.group])
+        .classed('marching-6', true)
            
     // Draw the circles
     const circles = d3.select(circleGrp)

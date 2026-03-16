@@ -1,0 +1,17 @@
+@keyframes march-6 {
+    from {
+        stroke-dashoffset: 0;
+    }
+    to {
+        stroke-dashoffset: -12;
+    }
+}
+
+.marching-6 {
+    stroke-dasharray: 6;
+    animation: march-6 1s linear infinite;
+}
+
+.marching-6.paused {
+    animation-play-state: paused;
+}
