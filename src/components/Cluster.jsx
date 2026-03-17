@@ -81,12 +81,12 @@ function ClusterNavBar(){
     
     return (
         <div className='relative grid grid-cols-3 grid-rows-1 items-center w-full h-25'>
-            <div ref={tooltipRef} className='tooltip w-100'></div>
+            <div ref={tooltipRef} className='tooltip'></div>
             <div className='justify-self-start flex flex-row gap-5 items-center justify-start z-50'>
                 <a href={'/'} ref={leftArrowRef}><span className='relative inline-block'><img src='leftArrow.svg' className='inline h-6 ml-16 mr-3'/></span>Path</a>
                 <span className='inline border-gray-400 border-1 h-5'></span>
                 <a href={'/'}><img src='home.svg' style={{height: '20px'}} /></a>
-                <img src='info.svg' style={{height: '20px'}} onMouseOver={(e) => showTooltip(e, paragraph, tooltipRef)} onMouseOut={(e) => hideTooltip(tooltipRef)}/>
+                <img src='info.svg' style={{height: '20px'}} onMouseOver={(e) => showTooltip(e, paragraph, tooltipRef.current)} onMouseOut={(e) => hideTooltip(tooltipRef.current)}/>
             </div> 
             <div>
                 <h1 className='colony-title text-center mt-8'>Symptom Cluster</h1>

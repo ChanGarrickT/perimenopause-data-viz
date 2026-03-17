@@ -11,6 +11,7 @@ import { NavLink } from 'react-router-dom';
 import { showTooltip, moveTooltip, hideTooltip } from '../utils';
 import AgeGraph from './AgeGraph';
 import Ornament from './Ornament';
+import HormoneGraph from './HormoneGraph';
 
 const viewOptions = ['Intense', 'Less Frequent', 'High Frequency'];
 const hormoneOptions = ['FSH', 'Testosterone', 'Estrogen', 'Progesterone'];
@@ -83,19 +84,24 @@ export default function Colony(props){
                 <div className='h-full'>
                     <ColonySilhouette {...silhouetteProps}/>
                 </div>
-                <div className='flex-3 flex flex-col h-full max-w-[30vw]'>
+                <div className='relative flex-3 flex flex-col h-full max-w-[30vw]'>
                     <div className='relative flex-3 h-full'>
                         <div className='gray-panel-content relative flex flex-col h-full gap-4 z-20'>
                             <div className='flex flex-row gap-4 items-baseline'>
                                 <h5 className='filter-header'>Hormones</h5>
                                 <Ornament />
-                            </div>  
+                            </div>
+                            <div className='relative w-4/5 min-w-[300px] mx-auto aspect-[2/1]'>
+                                <HormoneGraph {...hormoneProps}/>
+                            </div>                           
                             <ColonySelectorDivided {...hormoneProps}/>
                             <div className='flex flex-row gap-4 items-baseline'>
                                 <h5 className='filter-header'>Age</h5>
                                 <Ornament />
                             </div>  
-                            <AgeGraph />
+                            <div className='relative w-4/5 min-w-[300px] mx-auto aspect-[2/1]'>
+                                <AgeGraph />
+                            </div>   
                         </div>
                         <div className='absolute gray-panel w-full h-full top-0 left-0 z-10' />
                     </div>
@@ -131,12 +137,12 @@ function ColonyNavBar(){
 
     return (
         <div className='relative grid grid-cols-3 grid-rows-1 items-center w-full h-25'>
-            <div ref={tooltipRef} className='tooltip w-100'></div>
+            <div ref={tooltipRef} className='tooltip'></div>
             <div className='justify-self-start flex flex-row gap-5 items-center justify-start z-50'>
                 <a href={'/'} ref={leftArrowRef}><span className='relative inline-block'><img src='leftArrow.svg' className='inline h-6 ml-16 mr-3'/></span>Path</a>
                 <span className='inline border-gray-400 border-1 h-5'></span>
                 <a href={'/'}><img src='home.svg' style={{height: '20px'}} /></a>
-                <img src='info.svg' style={{height: '20px'}} onMouseOver={(e) => showTooltip(e, paragraph, tooltipRef)} onMouseOut={(e) => hideTooltip(tooltipRef)}/>
+                <img src='info.svg' style={{height: '20px'}} onMouseOver={(e) => showTooltip(e, paragraph, tooltipRef.current)} onMouseOut={(e) => hideTooltip(tooltipRef.current)}/>
             </div> 
             <div>
                 <h1 className='colony-title text-center mt-8'>Colony of Symptoms</h1>

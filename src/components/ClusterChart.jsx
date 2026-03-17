@@ -18,10 +18,10 @@ const drawParams = {
 
 // Force parameters for easy adjustments
 const forces = {
-    chargeClear: -200,          // Negative for repulsion
+    chargeClear: -100,          // Negative for repulsion
     chargeSelected: -600,
     chargeNeighbor: -600,
-    chargeNotSelected: -100,
+    chargeNotSelected: -50,
     collideClear: 5,
     collideSelected: 20,
     collideNeighbor: 12,
@@ -65,7 +65,7 @@ export default function ClusterChart(props){
         simulation.force('yGroup').y(d => clusterXY(d.group, 'y', size));
         simulation.force('xCentripetal').x(size.width / 2);
         simulation.force('yCentripetal').y(size.height / 2);
-        drawChart(tooltipRef, circleGrpRef.current, lineGrpRef.current, props, size);
+        drawChart(tooltipRef.current, circleGrpRef.current, lineGrpRef.current, props, size);
         simulation.alphaTarget(0.3).restart();
     }, [size]);
 
@@ -175,7 +175,7 @@ export default function ClusterChart(props){
     )
 }
 
-function drawChart(tooltipRef, circleGrp, lineGrp, props, size){
+function drawChart(tooltipElement, circleGrp, lineGrp, props, size){
     // Draw the lines
     const lines = d3.select(lineGrp)        
         .selectAll('line')
@@ -184,7 +184,7 @@ function drawChart(tooltipRef, circleGrp, lineGrp, props, size){
         .attr('stroke-opacity', d => d.weight)
         .attr('stroke-width', d => Math.pow(d.weight, 2))
         .attr('stroke', d => colorMap[d.source.group])
-        .classed('marching-6', true)
+        .classed('marching-6 paused', true)
            
     // Draw the circles
     const circles = d3.select(circleGrp)
@@ -197,9 +197,9 @@ function drawChart(tooltipRef, circleGrp, lineGrp, props, size){
         .on('click', function(e, d){
             props.setCurrentSymptom((prev) => d.id !== prev ? d.id : '')
         })
-        .on('mouseover', (e, d) => showTooltip(e, d.id, tooltipRef))
-        .on('mousemove', (e) => moveTooltip(e, tooltipRef))
-        .on('mouseout', () => hideTooltip(tooltipRef))
+        .on('mouseover', (e, d) => showTooltip(e, `<span style="font-size: 12pt;">${d.id}</span>`, tooltipElement, 'center'))
+        .on('mousemove', (e) => moveTooltip(e, tooltipElement, 'center'))
+        .on('mouseout', () => hideTooltip(tooltipElement))
     
     simulation.on('tick', () => {
         lines

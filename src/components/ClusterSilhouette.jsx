@@ -31,7 +31,7 @@ export default function ClusterSilhouette(props){
 
     return (
         <div className='silhouette absolute h-19/20 aspect-[1241/1754] -top-full -bottom-full -left-full -right-full m-auto'>
-            <div ref={tooltipRef} id='colony-tooltip' className='fixed w-100 text-sm p-2 rounded-md'></div>
+            <div ref={tooltipRef} className='tooltip'></div>
             <svg ref={svgRef} width='100%' height='100%'>
                 <g ref={linesRef}></g>
                 <g ref={circlesRef}></g>
@@ -64,7 +64,7 @@ function plotPoints(svgElement, circlesGrp, linesGrp, tooltipElement, data, size
             .attr('fill', 'none')
             .attr('stroke', colorMap[selected.category])
             .attr('stroke-width', 1.5)
-            .attr('stroke-dasharray', '2 1')
+            .classed('marching-3', true)
     }
 
     d3.select(circlesGrp).selectAll('circle')

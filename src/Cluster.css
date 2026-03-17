@@ -15,3 +15,21 @@
 .marching-6.paused {
     animation-play-state: paused;
 }
+
+@keyframes march-3 {
+    from {
+        stroke-dashoffset: 0;
+    }
+    to {
+        stroke-dashoffset: -6;
+    }
+}
+
+.marching-3 {
+    stroke-dasharray: 3;
+    animation: march-3 1s linear infinite;
+}
+
+.marching-3.paused {
+    animation-play-state: paused;
+}

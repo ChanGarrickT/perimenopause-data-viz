@@ -36,7 +36,7 @@
         {"id":"Frequent Urination","type":"symptom","group":"Urological & Sexual"},
         {"id":"Vaginal Dryness & Irritation","type":"symptom","group":"Urological & Sexual"},
         {"id":"Painful Intercourse","type":"symptom","group":"Urological & Sexual"},
-        {"id":"Urinary Tract Infection (UTI)","type":"symptom","group":"Urological & Sexual"},
+        {"id":"Urinary Tract Infection","type":"symptom","group":"Urological & Sexual"},
 
         {"id":"Hair Thinning or Loss","type":"symptom","group":"Dermatological & Sensory"},
         {"id":"Skin Issues","type":"symptom","group":"Dermatological & Sensory"},
@@ -186,9 +186,9 @@
         {"source":"Painful Intercourse","target":"Vaginal Dryness & Irritation","weight":0.9,"type":"symptom"},
         {"source":"Painful Intercourse","target":"Frequent Urination","weight":0.7,"type":"symptom"},
         {"source":"Painful Intercourse","target":"Pelvic Discomfort","weight":0.8,"type":"symptom"},
-        {"source":"Painful Intercourse","target":"Urinary Tract Infection (UTI)","weight":0.7,"type":"symptom"},
+        {"source":"Painful Intercourse","target":"Urinary Tract Infection","weight":0.7,"type":"symptom"},
 
-        {"source":"Urinary Tract Infection (UTI)","target":"Painful Intercourse","weight":0.7,"type":"symptom"},
+        {"source":"Urinary Tract Infection","target":"Painful Intercourse","weight":0.7,"type":"symptom"},
 
         {"source":"Mood Swing","target":"Irritability","weight":0.9,"type":"symptom"},
         {"source":"Mood Swing","target":"Anxiety","weight":0.8,"type":"symptom"},
