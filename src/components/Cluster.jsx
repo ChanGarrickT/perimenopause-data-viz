@@ -5,6 +5,7 @@ import { useResizeObserver, useDebounceCallback } from 'usehooks-ts';
 import { showTooltip, moveTooltip, hideTooltip } from '../utils';
 import ClusterChart from './ClusterChart';
 import ClusterSilhouette from './ClusterSilhouette';
+import ClusterSymptoms from './ClusterSymptoms';
 
 
 export default function Cluster(props){
@@ -26,9 +27,10 @@ export default function Cluster(props){
         <div className='relative colony-main flex flex-col h-full w-full z-30'>
             <ClusterNavBar />
             <div className='flex flex-row gap-30 justify-between w-[85vw] h-[75vh] min-h-190 my-8 mx-auto text-white'>
-                <div className='relative flex-1 flex flex-col h-7/10 max-w-[20vw]'>
-                    <div className='gray-panel-content flex flex-col h-full gap-4 z-20'>
+                <div className='relative flex-1 flex flex-col h-7/10 max-w-[20vw] min-h-[720px]'>
+                    <div className='gray-panel-content relative flex flex-col h-full gap-4 z-20'>
                         <h5 className='filter-header'>Select a Symptom</h5>
+                        <ClusterSymptoms />                    
                     </div>
                     <div className='absolute gray-panel w-full h-full top-0 left-0 z-10' />           
                 </div>
