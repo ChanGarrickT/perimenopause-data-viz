@@ -27,7 +27,7 @@ export default function Cluster(props){
         <div className='relative colony-main flex flex-col h-full w-full z-30'>
             <ClusterNavBar />
             <div className='flex flex-row gap-30 justify-between w-[85vw] h-[75vh] min-h-190 my-8 mx-auto text-white'>
-                <div className='relative flex-1 flex flex-col h-7/10 max-w-[20vw] min-h-[720px]'>
+                <div className='relative flex-1 flex flex-col h-7/10 max-w-[20vw]'>
                     <div className='gray-panel-content relative flex flex-col h-full gap-4 z-20'>
                         <h5 className='filter-header'>Select a Symptom</h5>
                         <ClusterSymptoms />                    

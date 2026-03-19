@@ -1,7 +1,8 @@
 import { useState, useEffect, useRef, Fragment } from 'react';
 import * as d3 from "d3";
 import { useResizeObserver, useDebounceCallback } from 'usehooks-ts';
-import filterdata from '../data/filterData.json'
+import filterdata from '../data/filterData.json';
+import colorMap from '../data/colorMap.json';
 
 export default function ColonySilhouette(props){
     const svgRef = useRef(null);
@@ -16,7 +17,16 @@ export default function ColonySilhouette(props){
     let data = [];
     for (const category of props.peridata){
         for (const symptom of category.children){
-            data.push({...symptom, category: category.name, color: category.color});
+            for (let i = 0; i < symptom.x.length; i++){
+                data.push({
+                    name: symptom.name,
+                    value: symptom.value,
+                    category: category.name,
+                    x: symptom.x[i],
+                    y: symptom.y[i],
+                    hovertext: symptom.hovertext
+                })
+            }
         }
     }
 
@@ -61,6 +71,7 @@ export default function ColonySilhouette(props){
 }
 
 function plotPoints(svgElement, tooltipElement, data, filters, size){
+    const sizeRatio = size.width / 700;
     const svg = d3.select(svgElement)
     svg.selectAll('circle')
         // d => d.name is the identifier for enter/update/exit
@@ -71,7 +82,7 @@ function plotPoints(svgElement, tooltipElement, data, filters, size){
                     .attr('cx', d => d.x * size.width)
                     .attr('cy', d => d.y * size.height)
                     .attr('r', 0)
-                    .attr('fill', d => d.color)
+                    .attr('fill', d => colorMap[d.category])
                     .attr('stroke', '#555')
                     .attr('stroke-width', 1)
                     .style('cursor', 'pointer')
@@ -108,7 +119,7 @@ function plotPoints(svgElement, tooltipElement, data, filters, size){
                 
                 circles.transition()
                     .duration(200)
-                    .attr('r', d => getRadius(d.value))
+                    .attr('r', d => getRadius(d.value) * sizeRatio)
             },
             function(update){
                 update
@@ -116,6 +127,7 @@ function plotPoints(svgElement, tooltipElement, data, filters, size){
                     .duration(200)
                     .attr('cx', d => d.x * size.width)
                     .attr('cy', d => d.y * size.height)
+                    .attr('r', d => getRadius(d.value) * sizeRatio)
             },
             function(exit){
                 exit
