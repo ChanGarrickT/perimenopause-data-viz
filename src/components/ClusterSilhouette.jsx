@@ -19,7 +19,16 @@ export default function ClusterSilhouette(props){
     let data = [];
     for (const category of peridata.symptoms.children){
         for (const symptom of category.children){
-            data.push({...symptom, category: category.name});
+            for (let i = 0; i < symptom.x.length; i++){
+                data.push({
+                    name: symptom.name,
+                    value: symptom.value,
+                    category: category.name,
+                    x: symptom.x[i],
+                    y: symptom.y[i],
+                    hovertext: symptom.hovertext
+                })
+            }
         }
     }
 
@@ -48,6 +57,11 @@ function plotPoints(svgElement, circlesGrp, linesGrp, tooltipElement, data, size
         for(const d of data){
             if(d.name === props.currentSymptom) selected = d;
             else if(props.currentNeighbors.includes(d.name)) neighbors.push(d)
+            if(props.currentNeighbors[0] === d.name){
+                // In case no links defined for current symptom
+                neighbors.push(d);
+                break;
+            }
         }
     }
 

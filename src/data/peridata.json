@@ -274,6 +274,17 @@
                         "hovertext": "Bone density may begin to decline as estrogen and testosterone levels fluctuate, increasing the risk of bone loss over time."
                     },
                     {
+                        "name": "Thyroid Dysfunction",
+                        "value": 609,
+                        "x": [
+                            0.51
+                        ],
+                        "y": [
+                            0.159
+                        ],
+                        "hovertext": ""
+                    },
+                    {
                         "name": "Breast Tenderness / Pain",
                         "value": 591,
                         "x": [
@@ -647,8 +658,8 @@
                 "color": "#D1615D",
                 "children": [
                     {
-                        "name": "Hot Flashes & Night Sweat",
-                        "value": 6812,
+                        "name": "Hot Flashes",
+                        "value": 2812,
                         "x": [
                             0.584,
                             0.541,
@@ -664,6 +675,27 @@
                             0.49,
                             0.924,
                             0.645
+                        ],
+                        "hovertext": "Sudden waves of heat, flushing, or sweating may occur during the day or night. Hot flashes affect up to 70% of women, vary by race/ethnicity ~ Rates are high among African-American & Native American women ; Chinese & Japanese women have lower rates & a shorter overall duratiion of hot flashes. Elevated FSH and fluctuating estrogen are predictive of hot flashes."
+                    },
+                    {
+                        "name": "Night Sweat",
+                        "value": 958,
+                        "x": [
+                            0.412,
+                            0.317,
+                            0.484,
+                            0.629,
+                            0.523,
+                            0.482
+                        ],
+                        "y": [
+                            0.21,
+                            0.427,
+                            0.166,
+                            0.349,
+                            0.894,
+                            0.624
                         ],
                         "hovertext": "Sudden waves of heat, flushing, or sweating may occur during the day or night. Hot flashes affect up to 70% of women, vary by race/ethnicity ~ Rates are high among African-American & Native American women ; Chinese & Japanese women have lower rates & a shorter overall duratiion of hot flashes. Elevated FSH and fluctuating estrogen are predictive of hot flashes."
                     },

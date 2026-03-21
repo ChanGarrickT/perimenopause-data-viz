@@ -1,0 +1,7 @@
+.test-circ {
+    fill: none;
+    stroke: #fff8;
+    stroke-width: 3;
+    stroke-linecap: round;
+    /* stroke-dasharray: 100 900; */
+}

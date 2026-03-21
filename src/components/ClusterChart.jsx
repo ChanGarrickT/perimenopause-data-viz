@@ -85,6 +85,10 @@ export default function ClusterChart(props){
                 if(link.source.id === props.currentSymptom) neighbors.add(link.target.id);
                 if(link.target.id === props.currentSymptom) neighbors.add(link.source.id);
             }
+            // Add a dummy element if no links are defined
+            if(neighbors.size == 0){
+                neighbors.add(props.currentSymptom)
+            }
             props.setCurrentNeighbors([...neighbors]);
             
             // Animate lines
@@ -194,6 +198,7 @@ function drawChart(tooltipElement, circleGrp, lineGrp, props, size){
         .attr('r', drawParams.sizeClear)
         .attr('fill', d => colorMap[d.group])
         .style('filter', 'drop-shadow(0px 1px 2px black)')
+        .style('cursor', 'pointer')
         .on('click', function(e, d){
             props.setCurrentSymptom((prev) => d.id !== prev ? d.id : '')
         })

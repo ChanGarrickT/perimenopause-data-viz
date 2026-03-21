@@ -150,7 +150,7 @@ function ColonyNavBar(){
             <div className='justify-self-end flex flex-row justify-end-safe gap-6 z-50'>
                 <a href={'/cluster'}>Symptom Cluster</a>
                 <span className='inline border-gray-400 border-1 h-5'></span>
-                <a href={'/'}>Experiences</a>
+                <a href={'/experiences'}>Experiences</a>
                 <a href={'/'} className='mr-16'>Dear Peri</a>
             </div>               
         </div>       

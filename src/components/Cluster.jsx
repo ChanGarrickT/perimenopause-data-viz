@@ -30,7 +30,7 @@ export default function Cluster(props){
                 <div className='relative flex-1 flex flex-col h-7/10 max-w-[20vw]'>
                     <div className='gray-panel-content relative flex flex-col h-full gap-4 z-20'>
                         <h5 className='filter-header'>Select a Symptom</h5>
-                        <ClusterSymptoms />                    
+                        <ClusterSymptoms {...chartProps}/>                    
                     </div>
                     <div className='absolute gray-panel w-full h-full top-0 left-0 z-10' />           
                 </div>
@@ -96,7 +96,7 @@ function ClusterNavBar(){
             <div className='justify-self-end flex flex-row justify-end-safe gap-6 z-50'>
                 <a href={'/colony'}>Colony of Symptoms</a>
                 <span className='inline border-gray-400 border-1 h-5'></span>
-                <a href={'/'}>Experiences</a>
+                <a href={'/experiences'}>Experiences</a>
                 <a href={'/'} className='mr-16'>Dear Peri</a>
             </div>               
         </div>       

@@ -4,6 +4,7 @@ import Symptomgalaxy from "./components/Symptomgalaxy";
 import DIYData from "./components/DIYData";
 import Colony from "./components/Colony";
 import Cluster from "./components/Cluster";
+import Experiences from "./components/Experiences";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
   {
     path: "/cluster",
     element: <Cluster />
+  },
+  {
+    path: "/experiences",
+    element: <Experiences />
   }
 ]);
 

@@ -33,3 +33,20 @@
 .marching-3.paused {
     animation-play-state: paused;
 }
+
+.symptom-accordion {
+    background-color: #0008;
+    transition: background-color 150ms;
+}
+
+.symptom-accordion:hover {
+    background-color: #5558;
+}
+
+.symptom-accordion.active {
+    background-color: #9998;
+}
+
+.symptom-accordion.active:hover {
+    background-color: #CCC8;
+}

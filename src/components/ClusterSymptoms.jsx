@@ -7,11 +7,26 @@ import colorMap from '../data/colorMap.json';
 
 export default function ClusterSymptoms(props){
     const scrollRef = useRef(null);
+    const elements = {};
 
     const handleWheel = (e) => {
         // For whatever reason, the div won't scroll without this
         scrollRef.current.scrollTop += e.deltaY;
     };
+
+    function handleClick(e, symptom){
+        props.setCurrentSymptom((prev) => symptom !== prev ? symptom : '')
+    }
+
+    useEffect(() => {
+        d3.select(scrollRef.current)
+            .selectAll('.symptom-accordion')
+            .classed('active', false);
+        if(props.currentSymptom !== ''){
+            d3.select(elements[props.currentSymptom])
+                .classed('active', true);
+        }
+    }, [props.currentSymptom])
 
     return (
         <div ref={scrollRef} onWheel={handleWheel} className='w-full h-full overflow-y-auto z-70' tabIndex={0}>
@@ -22,7 +37,15 @@ export default function ClusterSymptoms(props){
                             <span style={{color: colorMap[category.name], marginRight: 12}}>⬤</span>{category.name}
                         </AccordionSummary>
                         {category.children.map((symptom, i2) => {
-                            return <AccordionDetails key={i2}>{symptom.name}</AccordionDetails>
+                            const element = <AccordionDetails
+                                        key={i2}
+                                        id={`accordion-${i1}-${i2}`}
+                                        className="symptom-accordion"
+                                        onClick={(e) => handleClick(e, symptom.name)}
+                                        sx={{cursor: 'pointer'}}>{symptom.name}
+                                    </AccordionDetails>
+                            elements[symptom.name] = `#accordion-${i1}-${i2}`;
+                            return element;
                         })}
                     </Accordion>
                 )
