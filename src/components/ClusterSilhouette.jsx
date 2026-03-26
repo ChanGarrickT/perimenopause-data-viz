@@ -56,12 +56,7 @@ function plotPoints(svgElement, circlesGrp, linesGrp, tooltipElement, data, size
     if(props.currentSymptom !== ''){
         for(const d of data){
             if(d.name === props.currentSymptom) selected = d;
-            else if(props.currentNeighbors.includes(d.name)) neighbors.push(d)
-            if(props.currentNeighbors[0] === d.name){
-                // In case no links defined for current symptom
-                neighbors.push(d);
-                break;
-            }
+            if(props.currentNeighbors.includes(d.name)) neighbors.push(d)
         }
     }
 
@@ -83,7 +78,7 @@ function plotPoints(svgElement, circlesGrp, linesGrp, tooltipElement, data, size
 
     d3.select(circlesGrp).selectAll('circle')
         // d => d.name is the identifier for enter/update/exit
-        .data(neighbors.length > 0 ? [...neighbors, selected] : data, d => d.name)
+        .data(neighbors.length > 0 ? [...neighbors, selected] : data, d => `${d.name} ${d.x} ${d.y}`)
         .join(
             function(enter){
                 const circles = enter.append('circle')
@@ -148,21 +143,6 @@ function plotPoints(svgElement, circlesGrp, linesGrp, tooltipElement, data, size
                     .remove()
             }
         );
-}
-
-function filterSymptoms(d, filters){
-    let result = true;
-    for(const f of filters){
-        result &= f(d);
-    }
-    return result;
-}
-
-function getRadius(value){
-    if(value <= 100) return 5;          
-    if(value <= 500) return 7;
-    if(value <= 5000) return 9;
-    return 11;
 }
 
 function getTooltipHtml(d){

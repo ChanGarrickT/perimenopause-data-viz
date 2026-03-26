@@ -6,7 +6,7 @@
         {"id":"Chills","type":"symptom","group":"Vasomotor"},
         {"id":"Temperature Sensitivity","type":"symptom","group":"Vasomotor"},
 
-        {"id":"Dizzy/Vertigo","type":"symptom","group":"Cognitive"},
+        {"id":"Dizzy / Vertigo","type":"symptom","group":"Cognitive"},
         {"id":"Brain Fog","type":"symptom","group":"Cognitive"},
         {"id":"Memory Lapse","type":"symptom","group":"Cognitive"},
         {"id":"Decreased Attention","type":"symptom","group":"Cognitive"},
@@ -22,7 +22,7 @@
         {"id":"Anger","type":"symptom","group":"Psychological & Emotional"},
         {"id":"Emotional Instability","type":"symptom","group":"Psychological & Emotional"},
         {"id":"Sudden Sadness","type":"symptom","group":"Psychological & Emotional"},
-        {"id":"Social Withdrawl","type":"symptom","group":"Psychological & Emotional"},
+        {"id":"Social Withdrawal","type":"symptom","group":"Psychological & Emotional"},
         {"id":"Loss of Motivation","type":"symptom","group":"Psychological & Emotional"},
         {"id":"Low Self Esteem","type":"symptom","group":"Psychological & Emotional"},
         {"id":"Mental Fatigue","type":"symptom","group":"Psychological & Emotional"},
@@ -46,6 +46,7 @@
         {"id":"Dry & Itchy Ear","type":"symptom","group":"Dermatological & Sensory"},
 
         {"id":"Bone Health","type":"symptom","group":"Physical"},
+        {"id":"Thyroid Dysfunction","type":"symptom","group":"Physical"},
         {"id":"Weight Gain","type":"symptom","group":"Physical"},
         {"id":"Bloating","type":"symptom","group":"Physical"},
         {"id":"Vision Changes","type":"symptom","group":"Physical"},
@@ -60,6 +61,7 @@
         {"id":"Tinnitus","type":"symptom","group":"Physical"},
         {"id":"Heat Burn / Acid Reflux","type":"symptom","group":"Physical"},
         {"id":"Itchy Skin/Scalp","type":"symptom","group":"Physical"},
+        {"id":"Electric Shock Experience / Tremors","type":"symptom","group":"Physical"},
         {"id":"Tremors","type":"symptom","group":"Physical"},
         {"id":"Tingling","type":"symptom","group":"Physical"},
         {"id":"Irritable Bowel Syndrome (IBS)","type":"symptom","group":"Physical"},
@@ -94,7 +96,7 @@
         {"source":"Night Sweat","target":"Stress","weight":0.9,"type":"symptom"},
         {"source":"Night Sweat","target":"Heart Palpitations","weight":0.8,"type":"symptom"},
         {"source":"Night Sweat","target":"Anxiety","weight":0.8,"type":"symptom"},
-        {"source":"Night Sweat","target":"Dizzy/Vertigo","weight":0.6,"type":"symptom"},
+        {"source":"Night Sweat","target":"Dizzy / Vertigo","weight":0.6,"type":"symptom"},
         {"source":"Night Sweat","target":"Frequent Urination","weight":0.6,"type":"symptom"},
         {"source":"Night Sweat","target":"Body Odour","weight":0.8,"type":"symptom"},
 
@@ -104,7 +106,7 @@
         {"source":"Heart Palpitations","target":"Night Sweat","weight":0.8,"type":"symptom"},
         {"source":"Heart Palpitations","target":"Hot Flashes","weight":0.7,"type":"symptom"},
         {"source":"Heart Palpitations","target":"Blood Pressure Fluctuation","weight":0.7,"type":"symptom"},
-        {"source":"Heart Palpitations","target":"Dizzy/Vertigo","weight":0.7,"type":"symptom"},
+        {"source":"Heart Palpitations","target":"Dizzy / Vertigo","weight":0.7,"type":"symptom"},
 
         {"source":"Temperature Sensitivity","target":"Hot Flashes","weight":0.9,"type":"symptom"},
         {"source":"Temperature Sensitivity","target":"Night Sweat","weight":0.9,"type":"symptom"},
@@ -126,13 +128,13 @@
         {"source":"Brain Fog","target":"Emotional Instability","weight":0.7,"type":"symptom"},
         {"source":"Brain Fog","target":"Emotional Instability","weight":0.7,"type":"symptom"},
         {"source":"Brain Fog","target":"Stress","weight":0.7,"type":"symptom"},
-        {"source":"Brain Fog","target":"Dizzy/Vertigo","weight":0.7,"type":"symptom"},
+        {"source":"Brain Fog","target":"Dizzy / Vertigo","weight":0.7,"type":"symptom"},
 
-        {"source":"Dizzy/Vertigo","target":"Balancing Issues","weight":0.9,"type":"symptom"},
-        {"source":"Dizzy/Vertigo","target":"Blood Pressure Fluctuation","weight":0.8,"type":"symptom"},
-        {"source":"Dizzy/Vertigo","target":"Brain Fog","weight":0.7,"type":"symptom"},
-        {"source":"Dizzy/Vertigo","target":"Heart Palpitations","weight":0.7,"type":"symptom"},
-        {"source":"Dizzy/Vertigo","target":"Night Sweat","weight":0.6,"type":"symptom"},
+        {"source":"Dizzy / Vertigo","target":"Balancing Issues","weight":0.9,"type":"symptom"},
+        {"source":"Dizzy / Vertigo","target":"Blood Pressure Fluctuation","weight":0.8,"type":"symptom"},
+        {"source":"Dizzy / Vertigo","target":"Brain Fog","weight":0.7,"type":"symptom"},
+        {"source":"Dizzy / Vertigo","target":"Heart Palpitations","weight":0.7,"type":"symptom"},
+        {"source":"Dizzy / Vertigo","target":"Night Sweat","weight":0.6,"type":"symptom"},
 
         {"source":"Migraine","target":"Insomnia","weight":0.9,"type":"symptom"},
         {"source":"Migraine","target":"Anger","weight":0.8,"type":"symptom"},
@@ -216,7 +218,7 @@
         {"source":"Depression","target":"Loss of Motivation","weight":0.8,"type":"symptom"},
         {"source":"Depression","target":"Fluctuation in Cycles","weight":0.8,"type":"symptom"},
         {"source":"Depression","target":"Stress","weight":0.8,"type":"symptom"},
-        {"source":"Depression","target":"Social Withdrawl","weight":0.8,"type":"symptom"},
+        {"source":"Depression","target":"Social Withdrawal","weight":0.8,"type":"symptom"},
         {"source":"Depression","target":"Fatigue","weight":0.6,"type":"symptom"},
 
         {"source":"Stress","target":"Fluctuation in Cycles","weight":0.9,"type":"symptom"},
@@ -238,7 +240,7 @@
         {"source":"ADHD","target":"Loss of Motivation","weight":0.7,"type":"symptom"},
 
         {"source":"Panic","target":"Tremors","weight":0.9,"type":"symptom"},
-        {"source":"Panic","target":"Social Withdrawl","weight":0.8,"type":"symptom"},
+        {"source":"Panic","target":"Social Withdrawal","weight":0.8,"type":"symptom"},
         {"source":"Panic","target":"Hot Flashes","weight":0.6,"type":"symptom"},
         {"source":"Panic","target":"Panic","weight":0.7,"type":"symptom"},
 
@@ -259,13 +261,13 @@
         {"source":"Sudden Sadness","target":"Fluctuation in Cycles","weight":0.8,"type":"symptom"},
         {"source":"Sudden Sadness","target":"Brain Fog","weight":0.7,"type":"symptom"},
 
-        {"source":"Social Withdrawl","target":"Obsessive Compulsive Disorder (OCD)","weight":0.9,"type":"symptom"},
-        {"source":"Social Withdrawl","target":"Depression","weight":0.8,"type":"symptom"},
-        {"source":"Social Withdrawl","target":"Loss of Motivation","weight":0.7,"type":"symptom"},
+        {"source":"Social Withdrawal","target":"Obsessive Compulsive Disorder (OCD)","weight":0.9,"type":"symptom"},
+        {"source":"Social Withdrawal","target":"Depression","weight":0.8,"type":"symptom"},
+        {"source":"Social Withdrawal","target":"Loss of Motivation","weight":0.7,"type":"symptom"},
 
         {"source":"Loss of Motivation","target":"Depression","weight":0.8,"type":"symptom"},
         {"source":"Loss of Motivation","target":"Stress","weight":0.8,"type":"symptom"},
-        {"source":"Loss of Motivation","target":"Social Withdrawl","weight":0.7,"type":"symptom"},
+        {"source":"Loss of Motivation","target":"Social Withdrawal","weight":0.7,"type":"symptom"},
         {"source":"Loss of Motivation","target":"Insomnia","weight":0.7,"type":"symptom"},
         {"source":"Loss of Motivation","target":"ADHD","weight":0.7,"type":"symptom"},
 
@@ -403,8 +405,6 @@
         {"source":"Disorientation","target":"Mental Fatigue","weight":0.9,"type":"symptom"},
 
         {"source":"Vision Changes","target":"Diabetes","weight":0.7,"type":"symptom"},
-        {"source":"Vision Changes","target":"Insulin Resistance","weight":0.7,"type":"symptom"},
-
-        {"source":"Cramps","target":"Body Aches","weight":0.8,"type":"symptom"}
+        {"source":"Vision Changes","target":"Insulin Resistance","weight":0.7,"type":"symptom"}
     ]
 }

@@ -7,6 +7,7 @@ import colorMap from '../data/colorMap.json';
 export default function ColonySilhouette(props){
     const svgRef = useRef(null);
     const tooltipRef = useRef(null);
+    const legendRef = useRef(null);
 
     // Adjust circles on resize
     const [size, setSize] = useState({ width: 0, height: 0 });
@@ -60,12 +61,14 @@ export default function ColonySilhouette(props){
         if(data.length === 0) return;
         if(size.width === 0 || size.height === 0) return;
         plotPoints(svgRef.current, tooltipRef.current, data, filters, size);
+        drawLegend(legendRef.current, size);
     }, [size, props.currentCategory, props.currentView, props.currentStage, props.currentHormone]);
 
     return (
         <div className='silhouette relative h-full aspect-[1241/1754] mx-auto'>
             <div ref={tooltipRef} id='colony-tooltip' className='fixed w-100 text-sm p-2 rounded-md'></div>
             <svg ref={svgRef} width='100%' height='100%'></svg>
+            <svg ref={legendRef} className='absolute bottom-[-30px]' width='100%' height='10vh'></svg>
         </div>
     )
 }
@@ -164,4 +167,90 @@ function getTooltipHtml(d){
     } else {
         return `<h5 class='text-lg font-semibold'>${d.name}</h5>`
     }
+}
+
+function drawLegend(legendElement, size){
+    const sizeRatio = size.width / 700;
+
+    const svg = d3.select(legendElement);
+    svg.selectAll('*').remove();
+
+    const circles = svg.append('g')
+        .attr('fill', 'none')
+        .attr('stroke', 'white')
+        .attr('stroke-width', 1)
+
+    circles.append('circle')
+        .attr('cx', sizeRatio * 11 + 1)
+        .attr('cy', sizeRatio * 11 + 20)
+        .attr('r', sizeRatio * 11)
+    
+    circles.append('circle')
+        .attr('cx', sizeRatio * 11 + 1)
+        .attr('cy', sizeRatio * 13 + 20)
+        .attr('r', sizeRatio * 9)
+    
+    circles.append('circle')
+        .attr('cx', sizeRatio * 11 + 1)
+        .attr('cy', sizeRatio * 15 + 20)
+        .attr('r', sizeRatio * 7)
+
+    circles.append('circle')
+        .attr('cx', sizeRatio * 11 + 1)
+        .attr('cy', sizeRatio * 17 + 20)
+        .attr('r', sizeRatio * 5)
+
+    const text = svg.append('g')
+        .attr('fill', 'white')
+        .attr('font-size', 8)
+
+    text.append('text')
+        .text('≤ 15000')
+        .attr('x', sizeRatio * 11 + 30)
+        .attr('y', 6)
+
+    text.append('text')
+        .text('≤ 5000')
+        .attr('x', sizeRatio * 11 + 30)
+        .attr('y', 18)
+
+    text.append('text')
+        .text('≤ 100')
+        .attr('x', sizeRatio * 11 + 30)
+        .attr('y', 30)
+
+    text.append('text')
+        .text('≤ 100')
+        .attr('x', sizeRatio * 11 + 30)
+        .attr('y', 42)
+
+    const lines = svg.append('g')
+        .attr('fill', 'none')
+        .attr('stroke', 'white')
+        .attr('stroke-width', 1)
+    
+    lines.append('line')
+        .attr('x1', sizeRatio * 11 + 1)
+        .attr('y1', 20)
+        .attr('x2', sizeRatio * 11 + 25)
+        .attr('y2', 4)
+
+    lines.append('line')
+        .attr('x1', sizeRatio * 11 + 1)
+        .attr('y1', sizeRatio * 4 + 20)
+        .attr('x2', sizeRatio * 11 + 25)
+        .attr('y2', 16)
+
+    lines.append('line')
+        .attr('x1', sizeRatio * 11 + 1)
+        .attr('y1', sizeRatio * 8 + 20)
+        .attr('x2', sizeRatio * 11 + 25)
+        .attr('y2', 28)
+
+    lines.append('line')
+        .attr('x1', sizeRatio * 11 + 1)
+        .attr('y1', sizeRatio * 12 + 20)
+        .attr('x2', sizeRatio * 11 + 25)
+        .attr('y2', 40)
+
 }

@@ -22,19 +22,19 @@ const forces = {
     chargeSelected: -600,
     chargeNeighbor: -600,
     chargeNotSelected: -50,
-    collideClear: 5,
+    collideClear: 10,
     collideSelected: 20,
     collideNeighbor: 12,
     collideNotSelected: 8,
     linkClear: d => 0.5 * Math.pow(d.weight, 4),
-    linkSelected: 0,
-    linkNotSelected: 0,
+    linkSelected: d => 0.8 * Math.pow(d.weight, 2),
+    linkNotSelected: d => 0.1 * d.weight,
     xyGrpSelected: 0.1,
-    xyGrpNeighbor: 0.5,
+    xyGrpNeighbor: 0.3,
     xyGrpDeselected: 1,
     xyCtrSelected: 0.9,
     xyCtrDeselected: 0,
-    xyCtrNeighbor: 0.5
+    xyCtrNeighbor: 0.7
 }
 
 // Copy data structure for simulation to mutate
@@ -60,13 +60,22 @@ export default function ClusterChart(props){
 
     useEffect(() => {
         if(size.width === 0 || size.height === 0) return;
+        // Update size-dependent draw parameters
+        drawParams.sizeClear = size.width / 80;
+        drawParams.sizeSelected = size.width / 27;
+        drawParams.sizeNeighbor = size.width / 50;
         // Update size-dependent forces
+        forces.collideClear = size.width / 60;
+        forces.collideSelected = size.width / 20;
+        forces.collideNeighbor = size.width / 33;
+        forces.collideNotSelected = size.width / 60;
         simulation.force('xGroup').x(d => clusterXY(d.group, 'x', size));
         simulation.force('yGroup').y(d => clusterXY(d.group, 'y', size));
         simulation.force('xCentripetal').x(size.width / 2);
         simulation.force('yCentripetal').y(size.height / 2);
         drawChart(tooltipRef.current, circleGrpRef.current, lineGrpRef.current, props, size);
         simulation.alphaTarget(0.3).restart();
+        setTimeout(() => simulation.alphaTarget(0), 2000);
     }, [size]);
 
     // When a new symptom is selected, update neighbors list accordingly
@@ -83,7 +92,6 @@ export default function ClusterChart(props){
             const neighbors = new Set();
             for(const link of links){
                 if(link.source.id === props.currentSymptom) neighbors.add(link.target.id);
-                if(link.target.id === props.currentSymptom) neighbors.add(link.source.id);
             }
             // Add a dummy element if no links are defined
             if(neighbors.size == 0){
@@ -102,6 +110,7 @@ export default function ClusterChart(props){
         const circles = d3.select(circleGrpRef.current).selectAll('circle');
         if(circles.size() < 1) return;
         // Emphasize selected nodes and gray out others
+        const radiusScalar = size.width / 400;
         circles
             .data(nodes)
             .transition().duration(200)
@@ -122,7 +131,7 @@ export default function ClusterChart(props){
             .transition().duration(200)
             .attr('stroke-width', function(d){
                 if(props.currentSymptom === '') return drawParams.strokeClear(d);
-                if(d.source.id === props.currentSymptom || d.target.id === props.currentSymptom) return drawParams.strokeEnabled(d);
+                if(d.source.id === props.currentSymptom) return drawParams.strokeEnabled(d);
                 return drawParams.strokeDisabled;
             })
 
@@ -139,6 +148,12 @@ export default function ClusterChart(props){
             if(props.currentSymptom === d.id) return forces.collideSelected;
             if(props.currentNeighbors.includes(d.id)) return forces.collideNeighbor;
             return forces.collideNotSelected;
+        })
+        // Adjust collision forces according to selection
+        simulation.force('link').strength(function(d){
+            if(props.currentSymptom === '') return forces.linkClear(d);
+            if(props.currentSymptom === d.source.id) return forces.linkSelected(d);
+            return forces.linkNotSelected(d);
         })
         // Adjust cluster-directed position forces according to selection
         simulation.force('xGroup').strength(function(d){
@@ -189,7 +204,7 @@ function drawChart(tooltipElement, circleGrp, lineGrp, props, size){
         .attr('stroke-width', d => Math.pow(d.weight, 2))
         .attr('stroke', d => colorMap[d.source.group])
         .classed('marching-6 paused', true)
-           
+    
     // Draw the circles
     const circles = d3.select(circleGrp)
         .selectAll('circle')
@@ -228,21 +243,21 @@ function drawChart(tooltipElement, circleGrp, lineGrp, props, size){
 function clusterXY(category, axis, size){
     switch (category) {
     case 'Vasomotor':
-        return axis === 'x' ? size.width*0.5 : size.height*0.8;
+        return axis === 'x' ? size.width*0.5 : size.height*0.85;
     case 'Cognitive':
-        return axis === 'x' ? size.width*0.8 : size.height*0.8;
+        return axis === 'x' ? size.width*0.9 : size.height*0.85;
     case 'Psychological & Emotional':
-        return axis === 'x' ? size.width*0.5 : size.height*0.2;
+        return axis === 'x' ? size.width*0.5 : size.height*0.15;
     case 'Sleep':
-        return axis === 'x' ? size.width*0.8 : size.height*0.5;
+        return axis === 'x' ? size.width*0.9 : size.height*0.5;
     case 'Urological & Sexual':
-        return axis === 'x' ? size.width*0.2 : size.height*0.5;
+        return axis === 'x' ? size.width*0.1 : size.height*0.5;
     case 'Dermatological & Sensory':
-        return axis === 'x' ? size.width*0.2 : size.height*0.8;
+        return axis === 'x' ? size.width*0.1 : size.height*0.85;
     case 'Physical':
-        return axis === 'x' ? size.width*0.8 : size.height*0.2;
+        return axis === 'x' ? size.width*0.85 : size.height*0.2;
     case 'Menstrual':
-        return axis === 'x' ? size.width*0.2 : size.height*0.2;
+        return axis === 'x' ? size.width*0.1 : size.height*0.15;
     default:
         return axis === 'x' ? size.width*0.5 : size.height*0.5;
   }

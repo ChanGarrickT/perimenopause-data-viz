@@ -32,7 +32,7 @@ export default function ClusterSymptoms(props){
         <div ref={scrollRef} onWheel={handleWheel} className='w-full h-full overflow-y-auto z-70' tabIndex={0}>
             {peridata.symptoms.children.map((category, i1) => {
                 return (
-                    <Accordion key={i1} sx={{color: 'white', backgroundColor: '#0008'}}>
+                    <Accordion key={i1} sx={{color: 'white', backgroundColor: '#0000'}}>
                         <AccordionSummary expandIcon={<ExpandMoreIcon sx={{color: 'white'}}/>}>
                             <span style={{color: colorMap[category.name], marginRight: 12}}>⬤</span>{category.name}
                         </AccordionSummary>

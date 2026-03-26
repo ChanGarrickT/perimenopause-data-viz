@@ -9,7 +9,7 @@ export default function ColonySymptoms(props){
     }
 
     return (
-        <div className='flex flex-col h-1/2 px-4'>
+        <div className='flex flex-col p-1'>
             {
                 props.peridata.map((category, index) => {
                     const chartRowsProps = {
@@ -44,10 +44,10 @@ function ChartRow(props){
     }
 
     return (
-        <div onClick={() => selectCategory(props.text)} key={props.index} className='flex-1 flex flex-row items-center gap-3'>
-            <div className='chart-text flex-2 text-white'>{props.text}</div>
-            <div className='flex-3'>
-                <div ref={barRef} className={`chart-bar rounded-sm h-6 text-[#00000000]`} style={{width: `${props.width * 100}%`, backgroundColor: props.color}}>A</div>
+        <div onClick={() => selectCategory(props.text)} key={props.index} className='relative h-12 flex flex-row items-center gap-6'>
+            <div className='chart-text flex-2 text-white text-right'>{props.text}</div>
+            <div className='flex-3 h-[60%]'>
+                <div ref={barRef} className={`chart-bar rounded-xs h-full text-[#00000000]`} style={{width: `${props.width * 100}%`, backgroundColor: props.color}}>A</div>
             </div>
         </div>
     )

@@ -26,20 +26,20 @@ export default function Cluster(props){
     return (
         <div className='relative colony-main flex flex-col h-full w-full z-30'>
             <ClusterNavBar />
-            <div className='flex flex-row gap-30 justify-between w-[85vw] h-[75vh] min-h-190 my-8 mx-auto text-white'>
-                <div className='relative flex-1 flex flex-col h-7/10 max-w-[20vw]'>
-                    <div className='gray-panel-content relative flex flex-col h-full gap-4 z-20'>
-                        <h5 className='filter-header'>Select a Symptom</h5>
+            <div className='flex flex-row gap-20 justify-between w-[90vw] h-[75vh] min-h-190 my-8 mx-auto text-white'>
+                <div className='relative flex-1 flex flex-col h-[55vh] min-w-[300px] mt-12'>
+                    <div className='relative flex flex-col h-full gap-4 z-20 box-sizing py-15'>
+                        <h5 className='filter-header ml-3'>Select a Symptom</h5>
                         <ClusterSymptoms {...chartProps}/>                    
                     </div>
                     <div className='absolute gray-panel w-full h-full top-0 left-0 z-10' />           
                 </div>
-                <div className='flex-1 h-full'>
-                    <div className='w-full aspect-3/2 bg-white rounded-2xl'>
+                <div className='flex-2 h-full mt-12'>
+                    <div className='w-[37vw] aspect-3/2 mx-auto bg-white rounded-2xl'>
                         <ClusterChart {...chartProps}/>
                     </div>                   
                 </div>
-                <div className='flex-1 flex flex-col h-full max-w-[17vw]'>
+                <div className='flex-1 flex flex-col h-full min-w-[300px]'>
                     <div className='relative h-4/5'>
                         <div className='gray-panel-content relative h-full z-20'>
                             <ClusterSilhouette {...chartProps} />
@@ -86,7 +86,7 @@ function ClusterNavBar(){
             <div ref={tooltipRef} className='tooltip'></div>
             <div className='justify-self-start flex flex-row gap-5 items-center justify-start z-50'>
                 <a href={'/'} ref={leftArrowRef}><span className='relative inline-block'><img src='leftArrow.svg' className='inline h-6 ml-16 mr-3'/></span>Path</a>
-                <span className='inline border-gray-400 border-1 h-5'></span>
+                <span className='navbar-divider-left'></span>
                 <a href={'/'}><img src='home.svg' style={{height: '20px'}} /></a>
                 <img src='info.svg' style={{height: '20px'}} onMouseOver={(e) => showTooltip(e, paragraph, tooltipRef.current)} onMouseOut={(e) => hideTooltip(tooltipRef.current)}/>
             </div> 
@@ -95,7 +95,7 @@ function ClusterNavBar(){
             </div>          
             <div className='justify-self-end flex flex-row justify-end-safe gap-6 z-50'>
                 <a href={'/colony'}>Colony of Symptoms</a>
-                <span className='inline border-gray-400 border-1 h-5'></span>
+                <span className='navbar-divider-right'></span>
                 <a href={'/experiences'}>Experiences</a>
                 <a href={'/'} className='mr-16'>Dear Peri</a>
             </div>               
