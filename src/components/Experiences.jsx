@@ -3,38 +3,33 @@ import * as d3 from "d3";
 import { filter, isEmpty } from 'lodash';
 import { useResizeObserver, useDebounceCallback } from 'usehooks-ts';
 import { showTooltip, moveTooltip, hideTooltip } from '../utils';
-import ClusterChart from './ClusterChart';
-import ClusterSilhouette from './ClusterSilhouette';
-import ClusterSymptoms from './ClusterSymptoms';
 import ExperiencesChart from './ExperiencesChart';
-
+import stories from '../data/experiences_dummy.json';
 
 export default function Experiences(props){
+    const [currentStory, setCurrentStory] = useState(-1);
 
-    function clearFilters(){
-
-    }
+    const chartProps = {
+        stories: stories,
+        currentStory: currentStory,
+        setCurrentStory: setCurrentStory
+    };
 
     return (
-        <div className='relative colony-main flex flex-col h-full w-full z-30'>
+        <div className='relative colony-main flex flex-col h-full w-full z-30 items-center'>
             <ExperiencesNavBar />
-            <div className='flex flex-row gap-30 justify-between w-[85vw] h-[75vh] min-h-190 my-8 mx-auto text-white'>
-                <div className='relative flex-1 flex flex-col h-7/10 max-w-[20vw]'>
-                    <div className='gray-panel-content relative flex flex-col h-full gap-4 z-20'>
-                        <h5 className='filter-header'>Select an Experience</h5>                  
-                    </div>
-                    <div className='absolute gray-panel w-full h-full top-0 left-0 z-10' />           
-                </div>
-                <div className='flex-1 h-full'>
-                    <div className='w-full aspect-3/2'>
-                        <ExperiencesChart />
-                    </div>                   
-                </div>
-                <div className='flex-1 flex flex-col h-full max-w-[17vw]'>
-                    
+            <div className='relative flex flex-row gap-30 justify-between w-[85vw] h-[70vh] min-h-180 my-8 mx-auto text-white'>
+                <div>
+                    <ExperiencesChart {...chartProps}/>
                 </div>
             </div>
-            <div className='h-25'></div>
+            <div className='absolute flex-1 flex flex-col w-100 h-25 bottom-[10vh]'>
+                <div className='relative flex flex-col h-full gap-4 z-20 box-sizing py-5'>
+                    <textarea type='text' id='input-story' placeholder='Write your story'></textarea>
+                </div>
+                <div className='absolute gray-panel w-full h-full top-0 left-0 z-10 text-input' />           
+            </div>
+            <div className='h-45'></div>
         </div>
     )
 }

@@ -5,13 +5,16 @@
 
 .hormone-line {
   fill: none;
-  stroke-width: 5;
+  stroke: #DDD;
+  stroke-width: 3;
   opacity: 1;
   cursor: pointer;
   transition: opacity 0.2s ease;
 }
 
 .hormone-line:hover {
+  stroke: white;
+  stroke-width: 5;
   opacity: 1;
 }
 

@@ -76,7 +76,9 @@ export default function Colony(props){
                         <ColonySelectorDivided {...viewProps}/>
                         <div className='flex flex-row items-center mt-3'>
                             <h5 className='filter-header'>Stage</h5>
-                            <ColonySelectorPill {...stageProps}/>
+                            <div className='ml-15'>
+                                <ColonySelectorPill {...stageProps}/>
+                            </div>
                         </div> 
                     </div>
                     <div className='absolute gray-panel w-full h-full top-0 left-0 z-10' />           
@@ -84,22 +86,22 @@ export default function Colony(props){
                 <div className='h-full'>
                     <ColonySilhouette {...silhouetteProps}/>
                 </div>
-                <div className='relative flex flex-col h-full w-3/10 min-w-[480px]'>
+                <div className='relative flex flex-col h-4/5 w-3/10 min-w-[480px]'>
                     <div className='relative flex-3 h-full'>
-                        <div className='gray-panel-content relative flex flex-col h-full gap-8 z-20'>
+                        <div className='gray-panel-content relative flex flex-col h-full gap-6 z-20'>
                             <div className='flex flex-row gap-4 items-baseline'>
                                 <h5 className='filter-header-main'>Hormones</h5>
                                 <Ornament />
                             </div>
-                            <div className='relative w-full min-w-[300px] mx-auto aspect-[5/2]'>
+                            <div className='relative w-full h-30 mx-auto'>
                                 <HormoneGraph {...hormoneProps}/>
                             </div>                           
                             <ColonySelectorDivided {...hormoneProps}/>
-                            <div className='flex flex-row mt-8 gap-4 items-baseline'>
+                            <div className='flex flex-row mt-2 gap-4 items-baseline'>
                                 <h5 className='filter-header-main'>Age</h5>
                                 <Ornament />
                             </div>  
-                            <div className='relative w-full min-w-[300px] mx-auto aspect-[5/2]'>
+                            <div className='relative w-full h-30 mx-auto'>
                                 <AgeGraph />
                             </div>   
                         </div>

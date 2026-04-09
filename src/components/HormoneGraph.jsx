@@ -123,7 +123,7 @@ export default function HormoneGraph(props) {
         hormones.filter(h => filterHormones(h.name)).forEach((h) => {
             curveFill.append("path")
                 .datum(h.values)
-                .attr("fill", h.color)
+                .attr("fill", "#BBB")
                 .attr("opacity", 0.2)
                 .attr("d", area)
 				.attr("pointer-events", "none");
@@ -131,7 +131,6 @@ export default function HormoneGraph(props) {
             const path = curve.append("path")
                 .datum(h.values)
                 .attr("class", "hormone-line")
-                .attr("stroke", h.color)
                 .attr("data-name", h.name)
                 .attr("d", line);
 
@@ -146,7 +145,7 @@ export default function HormoneGraph(props) {
 
             path
 				.on("mouseover", function(e){
-					const text = `<p style="font-size: 12pt; color: ${h.color}";>${h.name}</p><br /><p>${h.relation}</p>`
+					const text = `<p style="font-size: 12pt; color: white";>${h.name}</p><br /><p>${h.relation}</p>`;
 					showTooltip(e, text, tooltipRef.current, 'center')
 				})
 				.on("mouseout", () => hideTooltip(tooltipRef.current));
@@ -160,7 +159,7 @@ export default function HormoneGraph(props) {
 
         svg.append("g")
             .attr("transform", `translate(${margin.left},0)`)
-            .call(d3.axisLeft(y).ticks(size.width > 400 ? 10 : 5))
+            .call(d3.axisLeft(y).ticks(size.height > 200 ? 10 : 5))
 			.style("font-size", size.width > 400 ? "10pt" : "8pt");
 
 		// Axis labels
@@ -171,7 +170,7 @@ export default function HormoneGraph(props) {
 			.attr("text-anchor", "middle")
 			.attr("transform", `translate(${(size.width - margin.right + margin.left) / 2}, ${size.height - 5})`)
 		svg.append("text")
-			.text("Hormone Amount")
+			.text("Amount")
 			.attr("font-size", size.width > 400 ? "12pt" : "9pt")
 			.attr("fill", "white")
 			.attr("text-anchor", "middle")

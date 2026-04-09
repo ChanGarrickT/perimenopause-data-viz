@@ -48,7 +48,7 @@ function AgeGraph() {
 
 		// ------------- axes labels -------------
 		svg.append("text")
-			.text("Age Range")
+			.text("Starting Age")
 			.attr("font-size", size.width > 400 ? "12pt" : "9pt")
 			.attr("fill", "white")
 			.attr("text-anchor", "middle")

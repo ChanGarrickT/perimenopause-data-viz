@@ -34,6 +34,10 @@
     animation-play-state: paused;
 }
 
+#accordion-container {
+    scrollbar-color: hsl(205, 50%, 25%) #fff0;
+}
+
 .symptom-accordion {
     box-shadow: none;
     transition: background-color 150ms;

@@ -51,7 +51,7 @@ export default function Cluster(props){
                     </div>
                 </div>
             </div>
-            <div className='h-25'></div>
+            <div className='h-45'></div>
         </div>
     )
 }

@@ -1,7 +1,77 @@
-.test-circ {
-    fill: none;
-    stroke: #fff8;
-    stroke-width: 3;
-    stroke-linecap: round;
-    /* stroke-dasharray: 100 900; */
+.story-container {
+    position: absolute;
+    transform-origin: 50% 50%;
+    background-color: #D9D9D9DD;
+    color: black;
+    padding: 15px;
+    border-radius: 5px;
+    max-width: 300px;
+    pointer-events: all;
+    opacity: 1;
+    transition: background-color 150ms, opacity 500ms, filter 200ms;
+}
+
+.story-container:hover {
+    background-color: white;
+}
+
+.story-hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.focus-story {
+    width: 600px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 35%;
+    margin: 0 auto;
+    padding: 30px;
+    border-radius: 20px;
+    background-color: white;
+    color: black;
+    filter: drop-shadow(0px 2px 4px #555);
+    opacity: 0;
+    transition: opacity 150ms;
+}
+
+.focus-x {
+    position: absolute;
+    width: 36px;
+    height: 36px;
+    right: calc(0% - 18px);
+    top: -18px;
+    font-size: 20pt;
+    text-align: center;
+    background-color: white;
+    color: #888;
+    border-radius: 18px;
+    filter: drop-shadow(0px 2px 1px #555);
+    transition: color 150ms;
+}
+
+.focus-x:hover {
+    color: crimson;
+}
+
+#input-story {
+    font-size: 12pt;
+    margin: 0 20px;
+    padding: 5px;
+    font-family: 'Fragment Mono', Courier, monospace;
+    font-weight: 400;
+    box-sizing: border-box;
+    scrollbar-color: white #fff0;
+    pointer-events: auto;
+}
+
+#input-story:focus {
+    outline: none;
+    border: 1px solid gray;
+    border-radius: 5px;
+}
+
+.gray-panel.text-input {
+    border-radius: 12px;
 }

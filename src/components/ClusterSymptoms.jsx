@@ -29,7 +29,7 @@ export default function ClusterSymptoms(props){
     }, [props.currentSymptom])
 
     return (
-        <div ref={scrollRef} onWheel={handleWheel} className='w-full h-full overflow-y-auto z-70' tabIndex={0}>
+        <div ref={scrollRef} onWheel={handleWheel} id='accordion-container' className='w-full h-full overflow-y-auto z-70' tabIndex={0}>
             {peridata.symptoms.children.map((category, i1) => {
                 return (
                     <Accordion key={i1} sx={{color: 'white', backgroundColor: '#0000'}}>

@@ -17,7 +17,7 @@ export default function ColonySelectorPill(props){
     }
 
     return (
-        <div ref={containerRef} className='pill-container flex flex-row mx-auto rounded-3xl'>
+        <div ref={containerRef} className='pill-container flex flex-row rounded-3xl'>
             {props.options.map((option, index) => {
                 if(index === 0){
                     return (

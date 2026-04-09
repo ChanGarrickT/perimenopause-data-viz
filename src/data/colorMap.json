@@ -1,11 +1,11 @@
 {
-    "Menstrual": "#A87C9F",
-    "Psychological & Emotional": "#B8B0AC",
-    "Physical": "#5778A4",
-    "Sleep": "#6A9F58",
-    "Sleep / Fatigue": "#6A9F58",
-    "Cognitive": "#E49444",
-    "Vasomotor": "#D1615D",
-    "Urological & Sexual": "#F1A2A9",
-    "Dermatological & Sensory": "#85B6B2"
+    "Menstrual": "#960F7D",
+    "Psychological & Emotional": "#7C7C7C",
+    "Physical": "#324BCA",
+    "Sleep": "#1A7C6D",
+    "Sleep / Fatigue": "#1A7C6D",
+    "Cognitive": "#C47871",
+    "Vasomotor": "#FF0B0B",
+    "Urological & Sexual": "#A765A8",
+    "Dermatological & Sensory": "#1BA2C0"
 }
